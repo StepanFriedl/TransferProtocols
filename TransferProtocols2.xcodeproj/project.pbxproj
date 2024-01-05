@@ -21,6 +21,11 @@
 		FDB8FB742B4863F2005D4F9F /* AllProtocolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB732B4863F2005D4F9F /* AllProtocolsView.swift */; };
 		FDB8FB782B486410005D4F9F /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB772B486410005D4F9F /* MainScreen.swift */; };
 		FDB8FB7C2B486435005D4F9F /* BottomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB7B2B486435005D4F9F /* BottomMenu.swift */; };
+		FDB8FB812B48658E005D4F9F /* BottomMenuStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB802B48658E005D4F9F /* BottomMenuStyles.swift */; };
+		FDB8FB832B486659005D4F9F /* BottomMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB822B486659005D4F9F /* BottomMenuButton.swift */; };
+		FDB8FB852B4866A0005D4F9F /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB842B4866A0005D4F9F /* MainVM.swift */; };
+		FDB8FB872B48687A005D4F9F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB862B48687A005D4F9F /* SettingsView.swift */; };
+		FDB8FB892B486965005D4F9F /* ProtocolDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB882B486965005D4F9F /* ProtocolDetailsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +45,11 @@
 		FDB8FB732B4863F2005D4F9F /* AllProtocolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProtocolsView.swift; sourceTree = "<group>"; };
 		FDB8FB772B486410005D4F9F /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		FDB8FB7B2B486435005D4F9F /* BottomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenu.swift; sourceTree = "<group>"; };
+		FDB8FB802B48658E005D4F9F /* BottomMenuStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuStyles.swift; sourceTree = "<group>"; };
+		FDB8FB822B486659005D4F9F /* BottomMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuButton.swift; sourceTree = "<group>"; };
+		FDB8FB842B4866A0005D4F9F /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
+		FDB8FB862B48687A005D4F9F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FDB8FB882B486965005D4F9F /* ProtocolDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolDetailsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,7 @@
 		FDB8FB502B486342005D4F9F /* TransferProtocols2 */ = {
 			isa = PBXGroup;
 			children = (
+				FDB8FB7F2B48657F005D4F9F /* Styles */,
 				FDB8FB6E2B4863B5005D4F9F /* Screens */,
 				FDB8FB6D2B486398005D4F9F /* Info.plist */,
 				FDB8FB5F2B486367005D4F9F /* Fonts */,
@@ -145,6 +156,7 @@
 			children = (
 				FDB8FB762B486402005D4F9F /* Components */,
 				FDB8FB772B486410005D4F9F /* MainScreen.swift */,
+				FDB8FB842B4866A0005D4F9F /* MainVM.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -153,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				FDB8FB7B2B486435005D4F9F /* BottomMenu.swift */,
+				FDB8FB822B486659005D4F9F /* BottomMenuButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -160,6 +173,7 @@
 		FDB8FB7D2B486446005D4F9F /* ProtocolDetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FDB8FB882B486965005D4F9F /* ProtocolDetailsScreen.swift */,
 			);
 			path = ProtocolDetailsScreen;
 			sourceTree = "<group>";
@@ -167,8 +181,17 @@
 		FDB8FB7E2B486450005D4F9F /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
+				FDB8FB862B48687A005D4F9F /* SettingsView.swift */,
 			);
 			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		FDB8FB7F2B48657F005D4F9F /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB802B48658E005D4F9F /* BottomMenuStyles.swift */,
+			);
+			path = Styles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,12 +270,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDB8FB782B486410005D4F9F /* MainScreen.swift in Sources */,
+				FDB8FB852B4866A0005D4F9F /* MainVM.swift in Sources */,
 				FDB8FB612B486372005D4F9F /* FontsManager.swift in Sources */,
 				FDB8FB542B486342005D4F9F /* ContentView.swift in Sources */,
 				FDB8FB522B486342005D4F9F /* TransferProtocols2App.swift in Sources */,
 				FDB8FB742B4863F2005D4F9F /* AllProtocolsView.swift in Sources */,
+				FDB8FB892B486965005D4F9F /* ProtocolDetailsScreen.swift in Sources */,
 				FDB8FB7C2B486435005D4F9F /* BottomMenu.swift in Sources */,
 				FDB8FB712B4863DA005D4F9F /* AddNewProtocolView.swift in Sources */,
+				FDB8FB832B486659005D4F9F /* BottomMenuButton.swift in Sources */,
+				FDB8FB812B48658E005D4F9F /* BottomMenuStyles.swift in Sources */,
+				FDB8FB872B48687A005D4F9F /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
