@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BottomMenu: View {
-    @Binding var currentScreen: MainScreensTab
+    @ObservedObject private var mainVM = MainViewModel.shared
     
     var body: some View {
         HStack (alignment: .bottom) {
@@ -16,7 +16,7 @@ struct BottomMenu: View {
             
             // MARK: - All protocols button
             Button {
-                currentScreen = .allProtocols
+                mainVM.mainScreensPage = .allProtocols
             } label: {
                 VStack {
                     Image(systemName: "list.dash")
@@ -32,13 +32,13 @@ struct BottomMenu: View {
                 .frame(width: 60, height: 50)
                 .multilineTextAlignment(.center)
             }
-//            .menuButtonColor(currentScreen == .allProtocols)
+            .menuButtonColor(mainVM.mainScreensPage == .allProtocols)
             
             Spacer()
             
             // MARK: - Add new protocol button
             Button {
-                currentScreen = .addNewProtocol
+                mainVM.mainScreensPage = .addNewProtocol
             } label: {
                 VStack {
                     Image(systemName: "plus.circle.fill")
@@ -54,13 +54,13 @@ struct BottomMenu: View {
                 .frame(width: 60, height: 50)
                 .multilineTextAlignment(.center)
             }
-//            .menuButtonColor(currentScreen == .addNewProtocol)
+            .menuButtonColor(mainVM.mainScreensPage == .addNewProtocol)
             
             Spacer()
             
             // MARK: - Settings button
             Button {
-                currentScreen = .settings
+                mainVM.mainScreensPage = .settings
             } label: {
                 VStack {
                     Image(systemName: "gear")
@@ -76,7 +76,7 @@ struct BottomMenu: View {
                 .frame(width: 60, height: 50)
                 .multilineTextAlignment(.center)
             }
-//            .menuButtonColor(currentScreen == .settings)
+            .menuButtonColor(mainVM.mainScreensPage == .settings)
             
             Spacer()
         }
@@ -93,10 +93,7 @@ struct BottomMenu_Previews: PreviewProvider {
         VStack {
             Spacer()
             
-            
-            BottomMenu(
-                currentScreen: $currentScreen
-            )
+            BottomMenu()
         }
     }
 }

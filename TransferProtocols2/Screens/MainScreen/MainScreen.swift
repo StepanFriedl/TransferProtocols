@@ -14,34 +14,31 @@ enum MainScreensTab {
 }
 
 struct MainScreen: View {
-    @State private var currentScreen: MainScreensTab = .addNewProtocol
+    @ObservedObject private var mainVM = MainViewModel.shared
     
     var body: some View {
         ZStack {
-            VStack {
-                switch currentScreen {
-                case .allProtocols:
-                    AllProtocolsView()
-                    
-                case .addNewProtocol:
-                    AddNewProtocolView()
-                    
-                case .settings:
-                    VStack {
-                        
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.yellow)
-                }
+            // MARK: - Main screen’s content
+            switch mainVM.mainScreensPage {
+            case .allProtocols:
+                AllProtocolsView()
+            case .addNewProtocol:
+                AddNewProtocolView()
+            case .settings:
+                SettingsView()
             }
             
             // MARK: - Bottom menu
             VStack {
                 Spacer()
                 
-                BottomMenu(
-                    currentScreen: $currentScreen
-                )
+                BottomMenu()
+            }
+            
+            // MARK: - Protocol details screen
+            if mainVM.profileDetailsScreenShown {
+                ProtocolDetailsScreen()
+                    .transition(.move(edge: .trailing) )
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

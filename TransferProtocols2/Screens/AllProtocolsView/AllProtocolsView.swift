@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct AllProtocolsView: View {
+    @ObservedObject private var mainVM = MainViewModel.shared
+    
     var body: some View {
         ScrollView (showsIndicators: false) {
             VStack {
                 ForEach(0...100, id:\.self) { number in
-                    HStack {
-                        Text("This is button number \(number)")
-                        
-                        Image(systemName: "chevron.right")
+                    Button {
+                        mainVM.presentedProtocol = "\(number)"
+                    } label: {
+                        HStack {
+                            Text("This is button number \(number)")
+                            
+                            Image(systemName: "chevron.right")
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 }
             }
             .padding(.bottom, 70)
