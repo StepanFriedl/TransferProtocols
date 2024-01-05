@@ -11,6 +11,16 @@
 		FDB8FB542B486342005D4F9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB532B486342005D4F9F /* ContentView.swift */; };
 		FDB8FB562B486343005D4F9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDB8FB552B486343005D4F9F /* Assets.xcassets */; };
 		FDB8FB592B486343005D4F9F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDB8FB582B486343005D4F9F /* Preview Assets.xcassets */; };
+		FDB8FB612B486372005D4F9F /* FontsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB602B486372005D4F9F /* FontsManager.swift */; };
+		FDB8FB682B48638D005D4F9F /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDB8FB632B48638D005D4F9F /* Quicksand-Light.ttf */; };
+		FDB8FB692B48638D005D4F9F /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDB8FB642B48638D005D4F9F /* Quicksand-Medium.ttf */; };
+		FDB8FB6A2B48638D005D4F9F /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDB8FB652B48638D005D4F9F /* Quicksand-Regular.ttf */; };
+		FDB8FB6B2B48638D005D4F9F /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDB8FB662B48638D005D4F9F /* Quicksand-Bold.ttf */; };
+		FDB8FB6C2B48638D005D4F9F /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDB8FB672B48638D005D4F9F /* Quicksand-SemiBold.ttf */; };
+		FDB8FB712B4863DA005D4F9F /* AddNewProtocolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB702B4863DA005D4F9F /* AddNewProtocolView.swift */; };
+		FDB8FB742B4863F2005D4F9F /* AllProtocolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB732B4863F2005D4F9F /* AllProtocolsView.swift */; };
+		FDB8FB782B486410005D4F9F /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB772B486410005D4F9F /* MainScreen.swift */; };
+		FDB8FB7C2B486435005D4F9F /* BottomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB7B2B486435005D4F9F /* BottomMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +29,17 @@
 		FDB8FB532B486342005D4F9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FDB8FB552B486343005D4F9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FDB8FB582B486343005D4F9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FDB8FB602B486372005D4F9F /* FontsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsManager.swift; sourceTree = "<group>"; };
+		FDB8FB632B48638D005D4F9F /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		FDB8FB642B48638D005D4F9F /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		FDB8FB652B48638D005D4F9F /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		FDB8FB662B48638D005D4F9F /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		FDB8FB672B48638D005D4F9F /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		FDB8FB6D2B486398005D4F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FDB8FB702B4863DA005D4F9F /* AddNewProtocolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProtocolView.swift; sourceTree = "<group>"; };
+		FDB8FB732B4863F2005D4F9F /* AllProtocolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProtocolsView.swift; sourceTree = "<group>"; };
+		FDB8FB772B486410005D4F9F /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		FDB8FB7B2B486435005D4F9F /* BottomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +72,9 @@
 		FDB8FB502B486342005D4F9F /* TransferProtocols2 */ = {
 			isa = PBXGroup;
 			children = (
+				FDB8FB6E2B4863B5005D4F9F /* Screens */,
+				FDB8FB6D2B486398005D4F9F /* Info.plist */,
+				FDB8FB5F2B486367005D4F9F /* Fonts */,
 				FDB8FB512B486342005D4F9F /* TransferProtocols2App.swift */,
 				FDB8FB532B486342005D4F9F /* ContentView.swift */,
 				FDB8FB552B486343005D4F9F /* Assets.xcassets */,
@@ -65,6 +89,86 @@
 				FDB8FB582B486343005D4F9F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FDB8FB5F2B486367005D4F9F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB622B48637B005D4F9F /* Quicksand */,
+				FDB8FB602B486372005D4F9F /* FontsManager.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FDB8FB622B48637B005D4F9F /* Quicksand */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB662B48638D005D4F9F /* Quicksand-Bold.ttf */,
+				FDB8FB632B48638D005D4F9F /* Quicksand-Light.ttf */,
+				FDB8FB642B48638D005D4F9F /* Quicksand-Medium.ttf */,
+				FDB8FB652B48638D005D4F9F /* Quicksand-Regular.ttf */,
+				FDB8FB672B48638D005D4F9F /* Quicksand-SemiBold.ttf */,
+			);
+			path = Quicksand;
+			sourceTree = "<group>";
+		};
+		FDB8FB6E2B4863B5005D4F9F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB6F2B4863C6005D4F9F /* AddNewProtocolView */,
+				FDB8FB722B4863E4005D4F9F /* AllProtocolsView */,
+				FDB8FB752B4863FC005D4F9F /* MainScreen */,
+				FDB8FB7D2B486446005D4F9F /* ProtocolDetailsScreen */,
+				FDB8FB7E2B486450005D4F9F /* SettingsView */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		FDB8FB6F2B4863C6005D4F9F /* AddNewProtocolView */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB702B4863DA005D4F9F /* AddNewProtocolView.swift */,
+			);
+			path = AddNewProtocolView;
+			sourceTree = "<group>";
+		};
+		FDB8FB722B4863E4005D4F9F /* AllProtocolsView */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB732B4863F2005D4F9F /* AllProtocolsView.swift */,
+			);
+			path = AllProtocolsView;
+			sourceTree = "<group>";
+		};
+		FDB8FB752B4863FC005D4F9F /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB762B486402005D4F9F /* Components */,
+				FDB8FB772B486410005D4F9F /* MainScreen.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		FDB8FB762B486402005D4F9F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB7B2B486435005D4F9F /* BottomMenu.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FDB8FB7D2B486446005D4F9F /* ProtocolDetailsScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProtocolDetailsScreen;
+			sourceTree = "<group>";
+		};
+		FDB8FB7E2B486450005D4F9F /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SettingsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +229,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDB8FB682B48638D005D4F9F /* Quicksand-Light.ttf in Resources */,
+				FDB8FB6B2B48638D005D4F9F /* Quicksand-Bold.ttf in Resources */,
+				FDB8FB692B48638D005D4F9F /* Quicksand-Medium.ttf in Resources */,
 				FDB8FB592B486343005D4F9F /* Preview Assets.xcassets in Resources */,
 				FDB8FB562B486343005D4F9F /* Assets.xcassets in Resources */,
+				FDB8FB6C2B48638D005D4F9F /* Quicksand-SemiBold.ttf in Resources */,
+				FDB8FB6A2B48638D005D4F9F /* Quicksand-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +246,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDB8FB782B486410005D4F9F /* MainScreen.swift in Sources */,
+				FDB8FB612B486372005D4F9F /* FontsManager.swift in Sources */,
 				FDB8FB542B486342005D4F9F /* ContentView.swift in Sources */,
 				FDB8FB522B486342005D4F9F /* TransferProtocols2App.swift in Sources */,
+				FDB8FB742B4863F2005D4F9F /* AllProtocolsView.swift in Sources */,
+				FDB8FB7C2B486435005D4F9F /* BottomMenu.swift in Sources */,
+				FDB8FB712B4863DA005D4F9F /* AddNewProtocolView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +384,7 @@
 				DEVELOPMENT_TEAM = XHTY5N4472;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TransferProtocols2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +414,7 @@
 				DEVELOPMENT_TEAM = XHTY5N4472;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TransferProtocols2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
