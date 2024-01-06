@@ -10,6 +10,18 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         MainScreen()
+            .ignoresSafeArea(.keyboard)
+            .preferredColorScheme(.light)
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    } label: {
+                        Image(systemName: "checkmark")
+                    }
+                }
+            }
     }
 }
 
