@@ -29,7 +29,7 @@ struct BottomMenu: View {
                     Text("All")
                         .font(.custom(FontsManager.Quicksand.regular, size: 12))
                 }
-                .frame(width: 60, height: 50)
+                .frame(width: 60, height: 45)
                 .multilineTextAlignment(.center)
             }
             .menuButtonColor(mainVM.mainScreensPage == .allProtocols)
@@ -51,7 +51,7 @@ struct BottomMenu: View {
                     Text("Add")
                         .font(.custom(FontsManager.Quicksand.regular, size: 12))
                 }
-                .frame(width: 60, height: 50)
+                .frame(width: 60, height: 45)
                 .multilineTextAlignment(.center)
             }
             .menuButtonColor(mainVM.mainScreensPage == .addNewProtocol)
@@ -73,7 +73,7 @@ struct BottomMenu: View {
                     Text("Settings")
                         .font(.custom(FontsManager.Quicksand.regular, size: 12))
                 }
-                .frame(width: 60, height: 50)
+                .frame(width: 60, height: 45)
                 .multilineTextAlignment(.center)
             }
             .menuButtonColor(mainVM.mainScreensPage == .settings)
@@ -82,6 +82,7 @@ struct BottomMenu: View {
         }
         .frame(maxWidth: .infinity)
         .frame(height: 70, alignment: .bottom)
+        .padding(.bottom, 15)
         .background(.ultraThinMaterial)
     }
 }
