@@ -33,6 +33,8 @@
 		FDB8FB852B4866A0005D4F9F /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB842B4866A0005D4F9F /* MainVM.swift */; };
 		FDB8FB872B48687A005D4F9F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB862B48687A005D4F9F /* SettingsView.swift */; };
 		FDB8FB892B486965005D4F9F /* ProtocolDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB882B486965005D4F9F /* ProtocolDetailsScreen.swift */; };
+		FDD8B9322B83B28C00288D4A /* TransferProtocols.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9302B83B28C00288D4A /* TransferProtocols.xcdatamodeld */; };
+		FDD8B9342B83B44300288D4A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9332B83B44300288D4A /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		FDB8FB842B4866A0005D4F9F /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
 		FDB8FB862B48687A005D4F9F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FDB8FB882B486965005D4F9F /* ProtocolDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolDetailsScreen.swift; sourceTree = "<group>"; };
+		FDD8B9312B83B28C00288D4A /* TransferProtocols.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TransferProtocols.xcdatamodel; sourceTree = "<group>"; };
+		FDD8B9332B83B44300288D4A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 		FDB8FB502B486342005D4F9F /* TransferProtocols2 */ = {
 			isa = PBXGroup;
 			children = (
+				FDD8B92F2B83B26E00288D4A /* CoreData */,
 				FD4A76EB2B83A2BA00013036 /* Components&Helpers */,
 				FDB8FB7F2B48657F005D4F9F /* Styles */,
 				FDB8FB6E2B4863B5005D4F9F /* Screens */,
@@ -175,13 +180,13 @@
 		FDB8FB6E2B4863B5005D4F9F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				FD4A76E82B83980A00013036 /* AddNewShopView */,
-				FD4A76E02B838C4400013036 /* ShopsScreen */,
 				FDB8FB6F2B4863C6005D4F9F /* AddNewProtocolView */,
+				FD4A76E82B83980A00013036 /* AddNewShopView */,
 				FDB8FB722B4863E4005D4F9F /* AllProtocolsView */,
 				FDB8FB752B4863FC005D4F9F /* MainScreen */,
 				FDB8FB7D2B486446005D4F9F /* ProtocolDetailsScreen */,
 				FDB8FB7E2B486450005D4F9F /* SettingsView */,
+				FD4A76E02B838C4400013036 /* ShopsScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -245,6 +250,15 @@
 				FD38FABA2B498917001DC91B /* NewProtocolFormStyles.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		FDD8B92F2B83B26E00288D4A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FDD8B9302B83B28C00288D4A /* TransferProtocols.xcdatamodeld */,
+				FDD8B9332B83B44300288D4A /* DataController.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,12 +336,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDD8B9322B83B28C00288D4A /* TransferProtocols.xcdatamodeld in Sources */,
 				FD4A76E52B83938900013036 /* ShopButtonView.swift in Sources */,
 				FDB8FB782B486410005D4F9F /* MainScreen.swift in Sources */,
 				FDB8FB852B4866A0005D4F9F /* MainVM.swift in Sources */,
 				FDB8FB612B486372005D4F9F /* FontsManager.swift in Sources */,
 				FDB8FB542B486342005D4F9F /* ContentView.swift in Sources */,
 				FDB8FB522B486342005D4F9F /* TransferProtocols2App.swift in Sources */,
+				FDD8B9342B83B44300288D4A /* DataController.swift in Sources */,
 				FDB8FB742B4863F2005D4F9F /* AllProtocolsView.swift in Sources */,
 				FD4A76ED2B83A2C800013036 /* ImagePicker.swift in Sources */,
 				FDB8FB892B486965005D4F9F /* ProtocolDetailsScreen.swift in Sources */,
@@ -543,6 +559,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FDD8B9302B83B28C00288D4A /* TransferProtocols.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FDD8B9312B83B28C00288D4A /* TransferProtocols.xcdatamodel */,
+			);
+			currentVersion = FDD8B9312B83B28C00288D4A /* TransferProtocols.xcdatamodel */;
+			path = TransferProtocols.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FDB8FB462B486342005D4F9F /* Project object */;
 }
