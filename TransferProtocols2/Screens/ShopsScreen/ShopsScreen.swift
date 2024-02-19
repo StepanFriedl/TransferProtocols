@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ShopsScreen: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var shops: FetchedResults<Shop>
+    
     @State private var addShopShown: Bool = false
     
     var body: some View {
@@ -17,9 +21,10 @@ struct ShopsScreen: View {
                     GridItem( .adaptive(minimum: 150, maximum: 150), spacing: 16 )
                 ],
                 spacing: 16) {
-                    ForEach(0..<6, id: \.self) { number in
-                        ShopButtonView()
+                    ForEach(shops, id: \.id) { shop in
+                        ShopButtonView(shop: shop)
                     }
+
                     AddNewShopButtonView(
                         action: {
                             MainViewModel.shared.mainViewScreen = .addShop

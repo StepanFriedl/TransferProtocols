@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddNewShopScreen: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var shops: FetchedResults<Shop>
+    
     @State private var companyName: String = ""
     @State private var registrationNumber: String = ""
     @State private var shopsLogo: UIImage? = nil
@@ -16,10 +19,10 @@ struct AddNewShopScreen: View {
     @State private var protocolsTitle: String = ""
     @State private var itemSpecificationTitle1: String = ""
     @State private var itemSpecificationTitle2: String = ""
-    @State private var handingOverTitle1: String = ""
-    @State private var handingOverTitle2: String = ""
-    @State private var takingOverTitle1: String = ""
-    @State private var takingOverTitle2: String = ""
+    @State private var handingInTitle1: String = ""
+    @State private var handingInTitle2: String = ""
+    @State private var handingOutTitle1: String = ""
+    @State private var handingOutTitle2: String = ""
     
     @State private var showImagePicker: Bool = false
     
@@ -70,20 +73,20 @@ struct AddNewShopScreen: View {
                     TextField("Item specification 2’s title", text: $itemSpecificationTitle2)
                         .newProtocolTextInput()
                     
-                    // MARK: - Handing over specification row 1's title
-                    TextField("Handing over specification 1’s title", text: $handingOverTitle1)
+                    // MARK: - Handing in specification row 1's title
+                    TextField("Handing in specification 1’s title", text: $handingInTitle1)
                         .newProtocolTextInput()
                     
-                    // MARK: - Handing over specification row 2's title
-                    TextField("Handing over specification 2’s title", text: $handingOverTitle2)
+                    // MARK: - Handing in specification row 2's title
+                    TextField("Handing in specification 2’s title", text: $handingInTitle2)
                         .newProtocolTextInput()
                     
-                    // MARK: - Taking over specification row 1's title
-                    TextField("Taking over specification 1’s title", text: $takingOverTitle1)
+                    // MARK: - Handing out specification row 1's title
+                    TextField("Handing out specification 1’s title", text: $handingOutTitle1)
                         .newProtocolTextInput()
                     
-                    // MARK: - Taking over specification row 2's title
-                    TextField("Taking over specification 2’s title", text: $takingOverTitle2)
+                    // MARK: - Handing out specification row 2's title
+                    TextField("Handing out specification 2’s title", text: $handingOutTitle2)
                         .newProtocolTextInput()
                     
                     // TODO: - Add protocols preview
@@ -91,7 +94,7 @@ struct AddNewShopScreen: View {
                     
                     // MARK: - Save button
                     Button {
-                        print("I will save the shop one day")
+                        self.saveShop()
                     } label: {
                         Text("SAVE")
                             .saveButton()
@@ -101,7 +104,7 @@ struct AddNewShopScreen: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 100)
-                .padding(.bottom, 64)
+                .padding(.bottom, 300)
             }
             .padding(.horizontal, 32)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -153,6 +156,26 @@ struct AddNewShopScreen: View {
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(selectedImage: $shopsLogo)
         }
+    }
+    
+    private func saveShop() {
+        let shop = Shop(context: moc)
+        shop.id = UUID()
+        shop.companyName = companyName
+        shop.registrationNumber = registrationNumber
+        shop.logoImage = shopsLogo?.pngData()
+        shop.phoneNumber = phoneNumber
+        shop.email = email
+        shop.created = Date.now
+        shop.transferProtocolTitle = protocolsTitle
+        shop.itemSpecification1Title = itemSpecificationTitle1
+        shop.itemSpecification2Title = itemSpecificationTitle2
+        shop.handingInSpecification1Title = handingInTitle1
+        shop.handingInSpecification2Title = handingInTitle2
+        shop.handingOutSpecification1Title = handingOutTitle1
+        shop.handingOutSpecification2Title = handingOutTitle2
+        
+        try? moc.save()
     }
 }
 

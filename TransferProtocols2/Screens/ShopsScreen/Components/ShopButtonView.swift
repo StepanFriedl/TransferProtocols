@@ -10,12 +10,14 @@ import SwiftUI
 struct ShopButtonView: View {
     @ObservedObject private var mainVM = MainViewModel.shared
     
+    let shop: Shop
+    
     var body: some View {
         Button {
             mainVM.mainViewScreen = .protocols
         } label: {
             ZStack {
-                Text("This is a shop")
+                Text(shop.companyName ?? "Unknown name")
                     .foregroundStyle(.black)
                     .multilineTextAlignment(.center)
             }
@@ -29,6 +31,8 @@ struct ShopButtonView: View {
     }
 }
 
-#Preview {
-    ShopButtonView()
-}
+//#Preview {
+//    ShopButtonView(
+//        shop: Shop()
+//    )
+//}
