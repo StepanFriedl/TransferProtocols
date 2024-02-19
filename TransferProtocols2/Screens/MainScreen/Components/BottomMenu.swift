@@ -16,7 +16,7 @@ struct BottomMenu: View {
             
             // MARK: - All protocols button
             Button {
-                mainVM.mainScreensPage = .allProtocols
+                mainVM.shopScreensPage = .allProtocols
             } label: {
                 VStack {
                     Image(systemName: "list.dash")
@@ -32,13 +32,13 @@ struct BottomMenu: View {
                 .frame(width: 60, height: 45)
                 .multilineTextAlignment(.center)
             }
-            .menuButtonColor(mainVM.mainScreensPage == .allProtocols)
+            .menuButtonColor(mainVM.shopScreensPage == .allProtocols)
             
             Spacer()
             
             // MARK: - Add new protocol button
             Button {
-                mainVM.mainScreensPage = .addNewProtocol
+                mainVM.shopScreensPage = .addNewProtocol
             } label: {
                 VStack {
                     Image(systemName: "plus.circle.fill")
@@ -54,13 +54,13 @@ struct BottomMenu: View {
                 .frame(width: 60, height: 45)
                 .multilineTextAlignment(.center)
             }
-            .menuButtonColor(mainVM.mainScreensPage == .addNewProtocol)
+            .menuButtonColor(mainVM.shopScreensPage == .addNewProtocol)
             
             Spacer()
             
             // MARK: - Settings button
             Button {
-                mainVM.mainScreensPage = .settings
+                mainVM.shopScreensPage = .settings
             } label: {
                 VStack {
                     Image(systemName: "gear")
@@ -76,7 +76,7 @@ struct BottomMenu: View {
                 .frame(width: 60, height: 45)
                 .multilineTextAlignment(.center)
             }
-            .menuButtonColor(mainVM.mainScreensPage == .settings)
+            .menuButtonColor(mainVM.shopScreensPage == .settings)
             
             Spacer()
         }
@@ -88,7 +88,7 @@ struct BottomMenu: View {
 }
 
 struct BottomMenu_Previews: PreviewProvider {
-    @State static var currentScreen: MainScreensTab = .addNewProtocol
+    @State static var currentScreen: ShopScreensPage = .addNewProtocol
     
     static var previews: some View {
         VStack {
