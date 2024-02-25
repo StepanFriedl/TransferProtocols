@@ -35,4 +35,5 @@ class MainViewModel: ObservableObject {
             }
         }
     }
+    @Published var selectedShop: Shop? = nil
 }

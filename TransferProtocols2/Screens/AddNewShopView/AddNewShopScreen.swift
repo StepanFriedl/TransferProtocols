@@ -159,23 +159,30 @@ struct AddNewShopScreen: View {
     }
     
     private func saveShop() {
-        let shop = Shop(context: moc)
-        shop.id = UUID()
-        shop.companyName = companyName
-        shop.registrationNumber = registrationNumber
-        shop.logoImage = shopsLogo?.pngData()
-        shop.phoneNumber = phoneNumber
-        shop.email = email
-        shop.created = Date.now
-        shop.transferProtocolTitle = protocolsTitle
-        shop.itemSpecification1Title = itemSpecificationTitle1
-        shop.itemSpecification2Title = itemSpecificationTitle2
-        shop.handingInSpecification1Title = handingInTitle1
-        shop.handingInSpecification2Title = handingInTitle2
-        shop.handingOutSpecification1Title = handingOutTitle1
-        shop.handingOutSpecification2Title = handingOutTitle2
+        do {
+            let shop = Shop(context: moc)
+            shop.id = UUID()
+            shop.companyName = companyName
+            shop.registrationNumber = registrationNumber
+            shop.logoImage = shopsLogo?.pngData()
+            shop.phoneNumber = phoneNumber
+            shop.email = email
+            shop.created = Date.now
+            shop.transferProtocolTitle = protocolsTitle
+            shop.itemSpecification1Title = itemSpecificationTitle1
+            shop.itemSpecification2Title = itemSpecificationTitle2
+            shop.handingInSpecification1Title = handingInTitle1
+            shop.handingInSpecification2Title = handingInTitle2
+            shop.handingOutSpecification1Title = handingOutTitle1
+            shop.handingOutSpecification2Title = handingOutTitle2
+            
+            try moc.save()
+            
+            MainViewModel.shared.mainViewScreen = .shops
+        } catch {
+            // TODO: - Add error alert
+        }
         
-        try? moc.save()
     }
 }
 

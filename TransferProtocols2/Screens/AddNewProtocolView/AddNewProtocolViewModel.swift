@@ -6,11 +6,21 @@
 //
 
 import SwiftUI
+import CoreData
 
 class PickupProtocol: ObservableObject {
     var fullName: String = ""
     var phoneNumber: String = ""
     var emailAddress: String = ""
+    
+    var itemSpecification1: String = ""
+    var itemSpecification2: String = ""
+    var handingInSpecification1: String = ""
+    var handingInSpecification2: String = ""
+    var handingInShopsRepresentativeName: String = ""
+    var handingInPlace: String = ""
+    var handingInDate: Date = Date.now
+    
     var carModel: String = ""
     var licencePlate: String = ""
     var visibleDefects: String = ""
@@ -24,4 +34,21 @@ class PickupProtocol: ObservableObject {
 
 class AddNewProtocolViewModel: ObservableObject {
     @Published var newPickupProtocol: PickupProtocol = PickupProtocol()
+
+    
+//    func saveProtocol() {
+//        do {
+//            let newProtocol = Protocol(context: moc)
+//            newProtocol.itemSpecificationValue1 = newPickupProtocol.itemSpecification1
+//            newProtocol.itemSpecificationValue2 = newPickupProtocol.itemSpecification2
+//            newProtocol.handingInSpecificationValue1 = newPickupProtocol.handingInSpecification1
+//            newProtocol.handingInSpecificationValue2 = newPickupProtocol.handingInSpecification2
+////            newProtocol.shop = MainViewModel.shared.selectedShop
+//            try moc.save()
+//        } catch {
+//            // TODO: - Add error alert
+//        }
+//    }
+    
+    
 }
