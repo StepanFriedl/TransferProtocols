@@ -14,6 +14,7 @@ struct ShopButtonView: View {
     
     var body: some View {
         Button {
+            mainVM.selectedShop = shop
             mainVM.mainViewScreen = .protocols
         } label: {
             ZStack {

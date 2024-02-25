@@ -15,5 +15,43 @@
         <attribute name="phoneNumber" optional="YES" attributeType="String"/>
         <attribute name="registrationNumber" optional="YES" attributeType="String"/>
         <attribute name="transferProtocolTitle" optional="YES" attributeType="String"/>
+        <relationship name="protocols" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferProtocol" inverseName="shop" inverseEntity="TransferProtocol"/>
+    </entity>
+    <entity name="TransferProtocol" representedClassName="TransferProtocol" syncable="YES" codeGenerationType="class">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="customerBirthDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="customerEmail" optional="YES" attributeType="String"/>
+        <attribute name="customerFullName" optional="YES" attributeType="String"/>
+        <attribute name="customerPhoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="handedOut" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="handingInCompanyRepresentativeSignature" optional="YES" attributeType="Binary"/>
+        <attribute name="handingInCustomerSignature" optional="YES" attributeType="Binary"/>
+        <attribute name="handingInDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="handingInPersonName" optional="YES" attributeType="String"/>
+        <attribute name="handingInPlace" optional="YES" attributeType="String"/>
+        <attribute name="handingInSignaturePlace" optional="YES" attributeType="String"/>
+        <attribute name="handingInSpecificationTitle1" optional="YES" attributeType="String"/>
+        <attribute name="handingInSpecificationTitle2" optional="YES" attributeType="String"/>
+        <attribute name="handingInSpecificationValue1" optional="YES" attributeType="String"/>
+        <attribute name="handingInSpecificationValue2" optional="YES" attributeType="String"/>
+        <attribute name="handingOutCompanyRepresentativeSignature" optional="YES" attributeType="Binary"/>
+        <attribute name="handingOutCustomerSignature" optional="YES" attributeType="Binary"/>
+        <attribute name="handingOutDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="handingOutPlace" optional="YES" attributeType="String"/>
+        <attribute name="handingOutSpecificationTitle1" optional="YES" attributeType="String"/>
+        <attribute name="handingOutSpecificationTitle2" optional="YES" attributeType="String"/>
+        <attribute name="handingOutSpecificationValue1" optional="YES" attributeType="String"/>
+        <attribute name="handingOutSpecificationValue2" optional="YES" attributeType="String"/>
+        <attribute name="itemSpecificationTitle1" optional="YES" attributeType="String"/>
+        <attribute name="itemSpecificationTitle2" optional="YES" attributeType="String"/>
+        <attribute name="itemSpecificationValue1" optional="YES" attributeType="String"/>
+        <attribute name="itemSpecificationValue2" optional="YES" attributeType="String"/>
+        <attribute name="prototcolTitle" optional="YES" attributeType="String"/>
+        <attribute name="shopEmail" optional="YES" attributeType="String"/>
+        <attribute name="shopLogoImage" optional="YES" attributeType="Binary"/>
+        <attribute name="shopName" optional="YES" attributeType="String"/>
+        <attribute name="shopPhoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="shopRegistrationNumber" optional="YES" attributeType="String"/>
+        <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="protocols" inverseEntity="Shop"/>
     </entity>
 </model>
