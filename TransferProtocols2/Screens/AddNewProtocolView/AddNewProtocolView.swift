@@ -48,6 +48,7 @@ struct AddNewProtocolView: View {
                             .overlay(
                                 DatePicker(selection: $newProtocolVM.newPickupProtocol.customersBirthDate, displayedComponents: .date) {}
                                     .padding(8)
+                                    .foregroundStyle(.gray)
                                     .opacity(0.1)
                             )
                     }
@@ -121,6 +122,7 @@ struct AddNewProtocolView: View {
                                 DatePicker(selection: $newProtocolVM.newPickupProtocol.pickupDate, displayedComponents: .date) {
                                 }
                                     .padding(8)
+                                    .foregroundStyle(.gray)
                                     .opacity(0.1)
                             )
                     }
@@ -139,6 +141,7 @@ struct AddNewProtocolView: View {
                                 DatePicker(selection: $newProtocolVM.newPickupProtocol.signatureDate, displayedComponents: .date) {
                                 }
                                     .padding(8)
+                                    .foregroundStyle(.gray)
                                     .opacity(0.1)
                             )
                     }
@@ -168,14 +171,14 @@ struct AddNewProtocolView: View {
         }
         .padding(.horizontal, 32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(
-            Image("backgroundVector")
-                .resizable()
-                .rotationEffect(.degrees(270))
-                .aspectRatio(contentMode: .fill)
-                .opacity(0.5)
-                .ignoresSafeArea()
-        )
+//        .background(
+//            Image("backgroundVector")
+//                .resizable()
+//                .rotationEffect(.degrees(270))
+//                .aspectRatio(contentMode: .fill)
+//                .opacity(0.5)
+//                .ignoresSafeArea()
+//        )
     }
     
     func saveProtocol() {
@@ -204,7 +207,6 @@ struct AddNewProtocolView: View {
             newProtocol.handingInSpecificationTitle2 = selectedShop.handingInSpecification2Title
             newProtocol.handingInSpecificationValue1 = newProtocolVM.newPickupProtocol.handingInSpecification1
             newProtocol.handingInSpecificationValue2 = newProtocolVM.newPickupProtocol.handingInSpecification2
-            newProtocol.handingInSignaturePlace = newProtocolVM.newPickupProtocol.handingInSignaturePlace
             newProtocol.handingInPlace = newProtocolVM.newPickupProtocol.handingInPlace
             newProtocol.handingInPersonName = newProtocolVM.newPickupProtocol.handingInPerson
             newProtocol.handingInDate = newProtocolVM.newPickupProtocol.handingInDate
@@ -216,7 +218,7 @@ struct AddNewProtocolView: View {
             newProtocol.customerEmail = newProtocolVM.newPickupProtocol.customersEmailAddress
             newProtocol.customerBirthDate = newProtocolVM.newPickupProtocol.customersBirthDate
             newProtocol.created = Date.now
-            
+            newProtocol.handingOutPersonName = newProtocolVM.newPickupProtocol.handingOutPersonName
             
             newProtocol.shop = MainViewModel.shared.selectedShop
             

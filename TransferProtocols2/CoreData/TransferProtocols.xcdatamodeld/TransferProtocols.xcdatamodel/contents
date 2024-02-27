@@ -29,7 +29,6 @@
         <attribute name="handingInDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="handingInPersonName" optional="YES" attributeType="String"/>
         <attribute name="handingInPlace" optional="YES" attributeType="String"/>
-        <attribute name="handingInSignaturePlace" optional="YES" attributeType="String"/>
         <attribute name="handingInSpecificationTitle1" optional="YES" attributeType="String"/>
         <attribute name="handingInSpecificationTitle2" optional="YES" attributeType="String"/>
         <attribute name="handingInSpecificationValue1" optional="YES" attributeType="String"/>
@@ -37,6 +36,7 @@
         <attribute name="handingOutCompanyRepresentativeSignature" optional="YES" attributeType="Binary"/>
         <attribute name="handingOutCustomerSignature" optional="YES" attributeType="Binary"/>
         <attribute name="handingOutDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="handingOutPersonName" optional="YES" attributeType="String"/>
         <attribute name="handingOutPlace" optional="YES" attributeType="String"/>
         <attribute name="handingOutSpecificationTitle1" optional="YES" attributeType="String"/>
         <attribute name="handingOutSpecificationTitle2" optional="YES" attributeType="String"/>

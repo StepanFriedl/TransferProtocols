@@ -11,6 +11,7 @@ enum ShopScreensPage {
     case allProtocols
     case addNewProtocol
     case settings
+    case protocolDetails
 }
 
 enum MainViewsScreen {
@@ -36,4 +37,5 @@ class MainViewModel: ObservableObject {
         }
     }
     @Published var selectedShop: Shop? = nil
+    @Published var selectedProtocol: TransferProtocol? = nil
 }
