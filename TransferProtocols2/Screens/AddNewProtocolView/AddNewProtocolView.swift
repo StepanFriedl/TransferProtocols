@@ -18,28 +18,46 @@ struct AddNewProtocolView: View {
     var body: some View {
         ScrollView (showsIndicators: false) {
             VStack (alignment: .leading, spacing: 25) {
+                Text("Customer")
+                    .font(.custom(FontsManager.Quicksand.semiBold, size: 16))
                 
+                Group {
+                    // MARK: - Customer’s full name
+                    TextField("Customer’s full name", text: $newProtocolVM.newPickupProtocol.customersFullName)
+                        .newProtocolTextInput()
+                    
+                    // MARK: - Customer’s phone number
+                    TextField("Customer’s phone number", text: $newProtocolVM.newPickupProtocol.customersPhoneNumber)
+                        .newProtocolTextInput()
+                        .keyboardType(.phonePad)
+                    
+                    // MARK: - Customer’s email address
+                    TextField("Customer’s email address", text: $newProtocolVM.newPickupProtocol.customersEmailAddress)
+                        .newProtocolTextInput()
+                        .keyboardType(.emailAddress)
+                        .textInputAutocapitalization(.never)
+                    
+                    // MARK: - Customer’s birth date
+                    HStack {
+                        Text("Customer’s birth date:")
+    
+                        Spacer()
+                        
+                        Text(newProtocolVM.newPickupProtocol.customersBirthDate.formatted(.dateTime.day().month().year()))
+                            .dateTextView()
+                            .overlay(
+                                DatePicker(selection: $newProtocolVM.newPickupProtocol.customersBirthDate, displayedComponents: .date) {}
+                                    .padding(8)
+                                    .opacity(0.1)
+                            )
+                    }
+                }
+
                 // MARK: - Protocol’s title
                 if let protocolTitle = mainVM.selectedShop?.transferProtocolTitle {
                     Text(protocolTitle)
+                        .font(.custom(FontsManager.Quicksand.semiBold, size: 16))
                 }
-                
-//                Group {
-//                    // MARK: - Customer’s full name
-//                    TextField("Customer’s full name", text: $newProtocolVM.newPickupProtocol.fullName)
-//                        .newProtocolTextInput()
-//                    
-//                    // MARK: - Customer’s phone number
-//                    TextField("Customer’s phone number", text: $newProtocolVM.newPickupProtocol.phoneNumber)
-//                        .newProtocolTextInput()
-//                        .keyboardType(.phonePad)
-//                    
-//                    // MARK: - Customer’s email address
-//                    TextField("Customer’s email address", text: $newProtocolVM.newPickupProtocol.emailAddress)
-//                        .newProtocolTextInput()
-//                        .keyboardType(.emailAddress)
-//                        .textInputAutocapitalization(.never)
-//                }
                 
                 Group {
                     // MARK: - Item specification 1
@@ -162,45 +180,45 @@ struct AddNewProtocolView: View {
     
     func saveProtocol() {
         do {
+            guard let selectedShop = mainVM.selectedShop else { return }
             let newProtocol = TransferProtocol(context: moc)
-            newProtocol.shopPhoneNumber = "a"
-            newProtocol.shopPhoneNumber = "a"
-            newProtocol.shopName = "a"
-            newProtocol.shopLogoImage = Data()
-            newProtocol.shopEmail = "a"
-            newProtocol.prototcolTitle = "a"
-            newProtocol.itemSpecificationValue2 = "a"
-            newProtocol.itemSpecificationValue1 = "a"
-            newProtocol.itemSpecificationTitle1 = "a"
-            newProtocol.itemSpecificationTitle2 = "a"
-            newProtocol.handingOutSpecificationValue1 = "a"
-            newProtocol.handingOutSpecificationValue2 = "a"
-            newProtocol.handingOutSpecificationTitle1 = "a"
-            newProtocol.handingOutSpecificationTitle2 = "a"
-            newProtocol.handingOutPlace = "a"
-            newProtocol.handingOutDate = Date.now
-            newProtocol.handingOutCustomerSignature = Data()
-            newProtocol.handingOutCompanyRepresentativeSignature = Data()
-            newProtocol.handingInSpecificationTitle1 = "a"
-            newProtocol.handingInSpecificationTitle2 = "a"
-            newProtocol.handingInSpecificationValue1 = "a"
-            newProtocol.handingInSpecificationValue2 = "a"
-            newProtocol.handingInSignaturePlace = "a"
-            newProtocol.handingInPlace = "a"
-            newProtocol.handingInPersonName = "a"
-            newProtocol.handingInDate = Date()
+            newProtocol.shopPhoneNumber = selectedShop.phoneNumber ?? ""
+            newProtocol.shopRegistrationNumber = selectedShop.registrationNumber ?? ""
+            newProtocol.shopName = selectedShop.companyName ?? ""
+            newProtocol.shopLogoImage = selectedShop.logoImage ?? Data()
+            newProtocol.shopEmail = selectedShop.email ?? ""
+            newProtocol.prototcolTitle = selectedShop.transferProtocolTitle
+            newProtocol.itemSpecificationTitle1 = selectedShop.itemSpecification1Title
+            newProtocol.itemSpecificationTitle2 = selectedShop.itemSpecification2Title
+            newProtocol.itemSpecificationValue1 = newProtocolVM.newPickupProtocol.itemSpecification1
+            newProtocol.itemSpecificationValue2 = newProtocolVM.newPickupProtocol.itemSpecification2
+            newProtocol.handingOutSpecificationTitle1 = selectedShop.handingOutSpecification1Title
+            newProtocol.handingOutSpecificationTitle2 = selectedShop.handingOutSpecification2Title
+            newProtocol.handingOutSpecificationValue1 = newProtocolVM.newPickupProtocol.handingOutSpecification1
+            newProtocol.handingOutSpecificationValue2 = newProtocolVM.newPickupProtocol.handingOutSpecification2
+            newProtocol.handingOutPlace = nil
+            newProtocol.handingOutDate = nil
+            newProtocol.handingOutCustomerSignature = nil
+            newProtocol.handingOutCompanyRepresentativeSignature = nil
+            newProtocol.handingInSpecificationTitle1 = selectedShop.handingInSpecification1Title
+            newProtocol.handingInSpecificationTitle2 = selectedShop.handingInSpecification2Title
+            newProtocol.handingInSpecificationValue1 = newProtocolVM.newPickupProtocol.handingInSpecification1
+            newProtocol.handingInSpecificationValue2 = newProtocolVM.newPickupProtocol.handingInSpecification2
+            newProtocol.handingInSignaturePlace = newProtocolVM.newPickupProtocol.handingInSignaturePlace
+            newProtocol.handingInPlace = newProtocolVM.newPickupProtocol.handingInPlace
+            newProtocol.handingInPersonName = newProtocolVM.newPickupProtocol.handingInPerson
+            newProtocol.handingInDate = newProtocolVM.newPickupProtocol.handingInDate
             newProtocol.handingInCustomerSignature = Data()
             newProtocol.handingInCompanyRepresentativeSignature = Data()
-            newProtocol.handedOut = Date()
-            newProtocol.customerPhoneNumber = "a"
-            newProtocol.customerFullName = "a"
-            newProtocol.customerEmail = "a"
-            newProtocol.customerBirthDate = Date()
+            newProtocol.handedOut = nil
+            newProtocol.customerPhoneNumber = newProtocolVM.newPickupProtocol.customersPhoneNumber
+            newProtocol.customerFullName = newProtocolVM.newPickupProtocol.customersFullName
+            newProtocol.customerEmail = newProtocolVM.newPickupProtocol.customersEmailAddress
+            newProtocol.customerBirthDate = newProtocolVM.newPickupProtocol.customersBirthDate
             newProtocol.created = Date.now
             
             
             newProtocol.shop = MainViewModel.shared.selectedShop
-//            newProtocol.shop = MainViewModel.shared.selectedShop
             
             try moc.save()
         } catch {

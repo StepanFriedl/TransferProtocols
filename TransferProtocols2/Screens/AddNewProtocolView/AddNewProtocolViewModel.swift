@@ -9,17 +9,22 @@ import SwiftUI
 import CoreData
 
 class PickupProtocol: ObservableObject {
-    var fullName: String = ""
-    var phoneNumber: String = ""
-    var emailAddress: String = ""
+    var customersFullName: String = ""
+    var customersPhoneNumber: String = ""
+    var customersEmailAddress: String = ""
+    var customersBirthDate: Date = Date.now
     
     var itemSpecification1: String = ""
     var itemSpecification2: String = ""
     var handingInSpecification1: String = ""
     var handingInSpecification2: String = ""
+    var handingOutSpecification1: String = ""
+    var handingOutSpecification2: String = ""
     var handingInShopsRepresentativeName: String = ""
     var handingInPlace: String = ""
+    var handingInSignaturePlace: String = ""
     var handingInDate: Date = Date.now
+    var handingInPerson: String = ""
     
     var carModel: String = ""
     var licencePlate: String = ""
