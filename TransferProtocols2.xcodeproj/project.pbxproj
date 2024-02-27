@@ -35,6 +35,7 @@
 		FDB8FB892B486965005D4F9F /* ProtocolDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB882B486965005D4F9F /* ProtocolDetailsScreen.swift */; };
 		FDD8B9322B83B28C00288D4A /* TransferProtocols.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9302B83B28C00288D4A /* TransferProtocols.xcdatamodeld */; };
 		FDD8B9342B83B44300288D4A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9332B83B44300288D4A /* DataController.swift */; };
+		FDFA3A612B8E48E20025F656 /* ProtocolDetailsStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		FDB8FB882B486965005D4F9F /* ProtocolDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolDetailsScreen.swift; sourceTree = "<group>"; };
 		FDD8B9312B83B28C00288D4A /* TransferProtocols.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TransferProtocols.xcdatamodel; sourceTree = "<group>"; };
 		FDD8B9332B83B44300288D4A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolDetailsStyles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,9 +213,9 @@
 		FDB8FB752B4863FC005D4F9F /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FDFA3A5E2B8E32290025F656 /* ViewModels */,
 				FDB8FB762B486402005D4F9F /* Components */,
 				FDB8FB772B486410005D4F9F /* MainScreen.swift */,
-				FDB8FB842B4866A0005D4F9F /* MainVM.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -248,6 +250,7 @@
 			children = (
 				FDB8FB802B48658E005D4F9F /* BottomMenuStyles.swift */,
 				FD38FABA2B498917001DC91B /* NewProtocolFormStyles.swift */,
+				FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -259,6 +262,14 @@
 				FDD8B9332B83B44300288D4A /* DataController.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FDFA3A5E2B8E32290025F656 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FDB8FB842B4866A0005D4F9F /* MainVM.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +353,7 @@
 				FDB8FB852B4866A0005D4F9F /* MainVM.swift in Sources */,
 				FDB8FB612B486372005D4F9F /* FontsManager.swift in Sources */,
 				FDB8FB542B486342005D4F9F /* ContentView.swift in Sources */,
+				FDFA3A612B8E48E20025F656 /* ProtocolDetailsStyles.swift in Sources */,
 				FDB8FB522B486342005D4F9F /* TransferProtocols2App.swift in Sources */,
 				FDD8B9342B83B44300288D4A /* DataController.swift in Sources */,
 				FDB8FB742B4863F2005D4F9F /* AllProtocolsView.swift in Sources */,

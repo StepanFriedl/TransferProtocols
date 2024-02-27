@@ -27,6 +27,9 @@ struct MainScreen: View {
                         AddNewProtocolView()
                     case .settings:
                         SettingsView()
+                    case .protocolDetails:
+                        ProtocolDetailsScreen()
+                            .transition(.move(edge: .trailing))
                     }
                     
                     // MARK: - Bottom menu
@@ -42,6 +45,14 @@ struct MainScreen: View {
                             .transition(.move(edge: .trailing) )
                     }
                 }
+                .background(
+                    Image("backgroundVector")
+                        .resizable()
+                        .rotationEffect(.degrees(270))
+                        .aspectRatio(contentMode: .fill)
+                        .opacity(0.5)
+                        .ignoresSafeArea()
+                )
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

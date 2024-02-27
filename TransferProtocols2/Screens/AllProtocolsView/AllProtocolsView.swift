@@ -20,26 +20,33 @@ struct AllProtocolsView: View {
         ScrollView (showsIndicators: false) {
             VStack {
                 ForEach(protocols, id: \.id) { transferProtocol in
-                    Text(transferProtocol.handingInSpecificationValue1 ?? "")
+                    Button {
+                        mainVM.selectedProtocol = transferProtocol
+                        mainVM.shopScreensPage = .protocolDetails
+                    } label: {
+                        HStack {
+                            Text(transferProtocol.customerFullName ?? "")
+                                .font(.custom(FontsManager.Quicksand.bold, size: 16))
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                        }
+                        .foregroundStyle(.black)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 16)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(.ultraThinMaterial)
+                        )
+                    }
                 }
-                
-//                ForEach(0...100, id:\.self) { number in
-//                    Button {
-//                        mainVM.presentedProtocol = "\(number)"
-//                    } label: {
-//                        HStack {
-//                            Text("This is button number \(number)")
-//                            
-//                            Image(systemName: "chevron.right")
-//                        }
-//                        .padding(.horizontal)
-//                    }
-//                }
             }
+            .padding(.horizontal, 32)
+            .padding(.top, 32)
             .padding(.bottom, 70)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.gray)
     }
 }
 

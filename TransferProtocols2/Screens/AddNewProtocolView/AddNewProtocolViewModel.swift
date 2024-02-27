@@ -21,8 +21,8 @@ class PickupProtocol: ObservableObject {
     var handingOutSpecification1: String = ""
     var handingOutSpecification2: String = ""
     var handingInShopsRepresentativeName: String = ""
+    var handingOutPersonName: String = ""
     var handingInPlace: String = ""
-    var handingInSignaturePlace: String = ""
     var handingInDate: Date = Date.now
     var handingInPerson: String = ""
     
