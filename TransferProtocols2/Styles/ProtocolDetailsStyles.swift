@@ -13,6 +13,7 @@ struct ProtocolDetailsBigTitle: ViewModifier {
             .font(.custom(FontsManager.Quicksand.bold, size: 20))
             .foregroundStyle(.black)
             .padding(.bottom, 8)
+            .frame(maxWidth: .infinity, alignment: .center)
     }
 }
 
@@ -42,6 +43,12 @@ extension Text {
         modifier(ProtocolDetailsTitle())
     }
     
+//    func protocolDetailsText() -> some View {
+//        modifier(ProtocolDetailsText())
+//    }
+}
+
+extension View {
     func protocolDetailsText() -> some View {
         modifier(ProtocolDetailsText())
     }
