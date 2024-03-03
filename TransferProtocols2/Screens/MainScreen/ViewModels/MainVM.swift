@@ -38,4 +38,8 @@ class MainViewModel: ObservableObject {
     }
     @Published var selectedShop: Shop? = nil
     @Published var selectedProtocol: TransferProtocol? = nil
+    
+    func isProtocolsItemReturned(transferProtocol: TransferProtocol?) -> Bool {
+        return transferProtocol?.handingOutCustomerSignature?.isEmpty ?? false
+    }
 }
