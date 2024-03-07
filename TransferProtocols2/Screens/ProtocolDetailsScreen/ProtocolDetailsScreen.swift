@@ -157,10 +157,13 @@ struct ProtocolDetailsScreen: View {
                     // Handing in customer signature
                     Text("Customer’s signature:")
                         .protocolDetailsTitle()
-                    Image(uiImage: UIImage(data: Data()) ?? UIImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: .infinity, maxHeight: 150)
+                    if let imageData = mainVM.selectedProtocol?.handingInCustomerSignature,
+                       let uiImage = UIImage(data: imageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity, maxHeight: 150)
+                    }
                     
                     // Handing in company representative name
                     Text("Company representative’s name:")
@@ -172,10 +175,13 @@ struct ProtocolDetailsScreen: View {
                     Text("Company representative’s signature:")
                         .protocolDetailsTitle()
                     
-                    Image(uiImage: UIImage(data: Data()) ?? UIImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: .infinity, maxHeight: 150)
+                    if let imageData = mainVM.selectedProtocol?.handingInCompanyRepresentativeSignature,
+                       let uiImage = UIImage(data: imageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity, maxHeight: 150)
+                    }
                     
                     // MARK: - Handing out specifications
                     if mainVM.isProtocolsItemReturned(transferProtocol: mainVM.selectedProtocol) {
