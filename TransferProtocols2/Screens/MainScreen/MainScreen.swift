@@ -54,6 +54,11 @@ struct MainScreen: View {
                         .ignoresSafeArea()
                 )
             }
+            
+            // MARK: - Signature view
+            if mainVM.showSignatureView {
+                mainVM.signView
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

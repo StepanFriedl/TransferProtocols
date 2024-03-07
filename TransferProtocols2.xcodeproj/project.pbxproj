@@ -38,6 +38,7 @@
 		FDD8B9322B83B28C00288D4A /* TransferProtocols.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9302B83B28C00288D4A /* TransferProtocols.xcdatamodeld */; };
 		FDD8B9342B83B44300288D4A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9332B83B44300288D4A /* DataController.swift */; };
 		FDFA3A612B8E48E20025F656 /* ProtocolDetailsStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */; };
+		FDFFD9DF2B94A03F00EA2E28 /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFFD9DE2B94A03F00EA2E28 /* SignatureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		FDD8B9312B83B28C00288D4A /* TransferProtocols.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TransferProtocols.xcdatamodel; sourceTree = "<group>"; };
 		FDD8B9332B83B44300288D4A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolDetailsStyles.swift; sourceTree = "<group>"; };
+		FDFFD9DE2B94A03F00EA2E28 /* SignatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 		FDB8FB6E2B4863B5005D4F9F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				FDFFD9DD2B94A03300EA2E28 /* SignatureView */,
 				FDB8FB6F2B4863C6005D4F9F /* AddNewProtocolView */,
 				FD4A76E82B83980A00013036 /* AddNewShopView */,
 				FDB8FB722B4863E4005D4F9F /* AllProtocolsView */,
@@ -202,8 +205,8 @@
 		FDB8FB6F2B4863C6005D4F9F /* AddNewProtocolView */ = {
 			isa = PBXGroup;
 			children = (
+				FDFFD9DC2B949FB400EA2E28 /* ViewModels */,
 				FDB8FB702B4863DA005D4F9F /* AddNewProtocolView.swift */,
-				FD27934D2B498457007DC4C1 /* AddNewProtocolViewModel.swift */,
 			);
 			path = AddNewProtocolView;
 			sourceTree = "<group>";
@@ -276,6 +279,22 @@
 				FDB8FB842B4866A0005D4F9F /* MainVM.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FDFFD9DC2B949FB400EA2E28 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FD27934D2B498457007DC4C1 /* AddNewProtocolViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FDFFD9DD2B94A03300EA2E28 /* SignatureView */ = {
+			isa = PBXGroup;
+			children = (
+				FDFFD9DE2B94A03F00EA2E28 /* SignatureView.swift */,
+			);
+			path = SignatureView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +384,7 @@
 				FDB8FB522B486342005D4F9F /* TransferProtocols2App.swift in Sources */,
 				FDD8B9342B83B44300288D4A /* DataController.swift in Sources */,
 				FDB8FB742B4863F2005D4F9F /* AllProtocolsView.swift in Sources */,
+				FDFFD9DF2B94A03F00EA2E28 /* SignatureView.swift in Sources */,
 				FD4A76ED2B83A2C800013036 /* ImagePicker.swift in Sources */,
 				FDB8FB892B486965005D4F9F /* ProtocolDetailsScreen.swift in Sources */,
 				FDB8FB7C2B486435005D4F9F /* BottomMenu.swift in Sources */,
@@ -512,8 +532,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,8 +561,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

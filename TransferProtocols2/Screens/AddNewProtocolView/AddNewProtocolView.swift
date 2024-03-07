@@ -11,11 +11,12 @@ struct AddNewProtocolView: View {
     @Environment(\.managedObjectContext) var moc
 //    @FetchRequest(sortDescriptors: []) var protocols: FetchedResults<TransferProtocol>
     
-    @ObservedObject private var newProtocolVM = AddNewProtocolViewModel()
+    @StateObject private var newProtocolVM = AddNewProtocolViewModel()
     
     @ObservedObject private var mainVM = MainViewModel.shared
     
     var body: some View {
+        // MARK: - Main View
         ScrollView (showsIndicators: false) {
             VStack (alignment: .leading, spacing: 25) {
                 Text("Customer")
@@ -40,7 +41,7 @@ struct AddNewProtocolView: View {
                     // MARK: - Customer’s birth date
                     HStack {
                         Text("Customer’s birth date:")
-    
+                        
                         Spacer()
                         
                         Text(newProtocolVM.newPickupProtocol.customersBirthDate.formatted(.dateTime.day().month().year()))
@@ -53,7 +54,7 @@ struct AddNewProtocolView: View {
                             )
                     }
                 }
-
+                
                 // MARK: - Protocol’s title
                 if let protocolTitle = mainVM.selectedShop?.transferProtocolTitle {
                     Text(protocolTitle)
@@ -90,6 +91,23 @@ struct AddNewProtocolView: View {
                             .newProtocolTextInput()
                     }
                     
+                    HStack {
+                        // MARK: - Pickup location
+                        TextField("Handing in location", text: $newProtocolVM.newPickupProtocol.pickupLocation)
+                            .newProtocolTextInput()
+                        
+                        // MARK: - Pickup date
+                        Text(newProtocolVM.newPickupProtocol.pickupDate.formatted(.dateTime.day().month().year()))
+                            .dateTextView()
+                            .overlay(
+                                DatePicker(selection: $newProtocolVM.newPickupProtocol.pickupDate, displayedComponents: .date) {
+                                }
+                                    .padding(8)
+                                    .foregroundStyle(.gray)
+                                    .opacity(0.1)
+                            )
+                    }
+                    
                     // MARK: - Handing in shop representative’s name
                     TextField("Shop representative’s name", text: $newProtocolVM.newPickupProtocol.handingInShopsRepresentativeName)
                         .newProtocolTextInput()
@@ -105,33 +123,16 @@ struct AddNewProtocolView: View {
                         }
                     }
                     .addPhotoButton()
-
+                    
                     // MARK: - Number of attached photos
                     Text("Attached photos: \(newProtocolVM.newPickupProtocol.photos.count)")
                         .font(.custom(FontsManager.Quicksand.regular, size: 18))
-                    
-                    HStack {
-                        // MARK: - Pickup location
-                        TextField("Pickup location", text: $newProtocolVM.newPickupProtocol.pickupLocation)
-                            .newProtocolTextInput()
-                        
-                        // MARK: - Pickup date
-                        Text(newProtocolVM.newPickupProtocol.pickupDate.formatted(.dateTime.day().month().year()))
-                            .dateTextView()
-                            .overlay(
-                                DatePicker(selection: $newProtocolVM.newPickupProtocol.pickupDate, displayedComponents: .date) {
-                                }
-                                    .padding(8)
-                                    .foregroundStyle(.gray)
-                                    .opacity(0.1)
-                            )
-                    }
                 }
                 
                 Group {
                     HStack {
                         // MARK: - Signature location
-                        TextField("Pickup location", text: $newProtocolVM.newPickupProtocol.signatureLocation)
+                        TextField("Signature location", text: $newProtocolVM.newPickupProtocol.signatureLocation)
                             .newProtocolTextInput()
                         
                         // MARK: - Signature date
@@ -146,15 +147,61 @@ struct AddNewProtocolView: View {
                             )
                     }
                     
-                    // MARK: - Signature
-                    Text("Here will be the customer’s signature one day")
-                        .frame(height: 100)
-                        .frame(maxWidth: .infinity)
-                        .padding(8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(.ultraThinMaterial)
-                        )
+                    // MARK: - Customer’s signature
+                    ZStack {
+                        if let signatureData = self.newProtocolVM.newPickupProtocol.handingInCustomerSignature,
+                           let uiImage = UIImage(data: signatureData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .aspectRatio(600/250, contentMode: .fit)
+                                .frame(maxWidth: .infinity)
+                        } else {
+                            Text("Tap to add a customer’s signature.")
+                                .font(.custom(FontsManager.Quicksand.regular, size: 20))
+                                .opacity(0.5)
+                        }
+                    }
+                    .frame(height: 100)
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.ultraThinMaterial)
+                    )
+                    .onTapGesture {
+                        mainVM.signView = SignatureView(closeViewAction: { signatureImage in
+                            self.newProtocolVM.newPickupProtocol.handingInCustomerSignature = signatureImage.pngData()
+                            mainVM.showSignatureView = false
+                        })
+                        mainVM.showSignatureView = true
+                    }
+                    
+                    // MARK: - Company representative’s signature
+                    ZStack {
+                        if let signatureData = self.newProtocolVM.newPickupProtocol.handingInCompanyRepresentativeSignature,
+                           let uiImage = UIImage(data: signatureData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .aspectRatio(600/250, contentMode: .fit)
+                                .frame(maxWidth: .infinity)
+                        } else {
+                            Text("Tap to add a company representative’s signature.")
+                                .font(.custom(FontsManager.Quicksand.regular, size: 20))
+                                .opacity(0.5)
+                        }
+                    }
+                    .frame(height: 100)
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.ultraThinMaterial)
+                    )
+                    .onTapGesture {
+                        mainVM.signView = SignatureView(closeViewAction: { signatureImage in
+                            self.newProtocolVM.newPickupProtocol.handingInCompanyRepresentativeSignature = signatureImage.pngData()
+                            mainVM.showSignatureView = false
+                        })
+                        mainVM.showSignatureView = true
+                    }
                     
                     // MARK: - Save button
                     Button {
@@ -171,14 +218,6 @@ struct AddNewProtocolView: View {
         }
         .padding(.horizontal, 32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .background(
-//            Image("backgroundVector")
-//                .resizable()
-//                .rotationEffect(.degrees(270))
-//                .aspectRatio(contentMode: .fill)
-//                .opacity(0.5)
-//                .ignoresSafeArea()
-//        )
     }
     
     func saveProtocol() {
@@ -210,8 +249,8 @@ struct AddNewProtocolView: View {
             newProtocol.handingInPlace = newProtocolVM.newPickupProtocol.handingInPlace
             newProtocol.handingInPersonName = newProtocolVM.newPickupProtocol.handingInPerson
             newProtocol.handingInDate = newProtocolVM.newPickupProtocol.handingInDate
-            newProtocol.handingInCustomerSignature = Data()
-            newProtocol.handingInCompanyRepresentativeSignature = Data()
+            newProtocol.handingInCustomerSignature = newProtocolVM.newPickupProtocol.handingInCustomerSignature ?? Data()
+            newProtocol.handingInCompanyRepresentativeSignature = newProtocolVM.newPickupProtocol.handingInCompanyRepresentativeSignature ?? Data()
             newProtocol.handedOut = nil
             newProtocol.customerPhoneNumber = newProtocolVM.newPickupProtocol.customersPhoneNumber
             newProtocol.customerFullName = newProtocolVM.newPickupProtocol.customersFullName
@@ -223,6 +262,8 @@ struct AddNewProtocolView: View {
             newProtocol.shop = MainViewModel.shared.selectedShop
             
             try moc.save()
+            
+            mainVM.shopScreensPage = .allProtocols
         } catch {
             // TODO: - Add error alert
         }
