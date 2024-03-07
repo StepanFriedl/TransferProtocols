@@ -28,11 +28,7 @@ class PickupProtocol: ObservableObject {
     @Published var handingInCustomerSignature: Data? = nil
     @Published var handingInCompanyRepresentativeSignature: Data? = nil
     
-    var carModel: String = ""
-    var licencePlate: String = ""
-    var visibleDefects: String = ""
-    var photos: [Data] = []
-    var pickupLocation: String = ""
+    var handingInLocation: String = ""
     @Published var pickupDate: Date = Date.now
     var signatureLocation: String = ""
     @Published var signatureDate: Date = Date.now

@@ -12,7 +12,9 @@ struct AllProtocolsView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(
         entity: TransferProtocol.entity(),
-        sortDescriptors: [],
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \TransferProtocol.created, ascending: true)
+        ],
         predicate: NSPredicate(format: "shop == %@", argumentArray: [MainViewModel.shared.selectedShop ?? Shop()])
     ) var protocols: FetchedResults<TransferProtocol>
     
