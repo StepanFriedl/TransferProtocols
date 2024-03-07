@@ -9,6 +9,11 @@ import SwiftUI
 
 struct ProtocolDetailsScreen: View {
     @StateObject private var mainVM = MainViewModel.shared
+    @FetchRequest(
+        sortDescriptors: [],
+        predicate: NSPredicate(format: "transferProtocol == %@", argumentArray: [MainViewModel.shared.selectedProtocol ?? TransferProtocol()])
+    ) var protocolPictures: FetchedResults<HandingInPicture>
+
     
     var body: some View {
         ZStack {
@@ -153,6 +158,22 @@ struct ProtocolDetailsScreen: View {
                         .protocolDetailsTitle()
                     Text(mainVM.selectedProtocol?.handingInDate?.toString() ?? "Unknown date")
                         .protocolDetailsText()
+                    
+                    ScrollView (.horizontal) {
+                        HStack {
+                            ForEach(protocolPictures, id: \.self) { protocolPicture in
+                                if let pictureData = protocolPicture.pictureData,
+                                   let uiImage = UIImage(data: pictureData) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 150)
+                                }
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 150)
                     
                     // Handing in customer signature
                     Text("Customer’s signature:")

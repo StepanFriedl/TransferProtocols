@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AddNewProtocolView: View {
     @Environment(\.managedObjectContext) var moc
@@ -14,6 +15,9 @@ struct AddNewProtocolView: View {
     @StateObject private var newProtocolVM = AddNewProtocolViewModel()
     
     @ObservedObject private var mainVM = MainViewModel.shared
+    
+    @State private var photosPickerItems: [PhotosPickerItem] = []
+    @State private var photos: [UIImage] = []
     
     var body: some View {
         // MARK: - Main View
@@ -92,12 +96,12 @@ struct AddNewProtocolView: View {
                     }
                     
                     HStack {
-                        // MARK: - Pickup location
-                        TextField("Handing in location", text: $newProtocolVM.newPickupProtocol.pickupLocation)
+                        // MARK: - Handing in location
+                        TextField("Handing in location", text: $newProtocolVM.newPickupProtocol.handingInLocation)
                             .newProtocolTextInput()
                         
-                        // MARK: - Pickup date
-                        Text(newProtocolVM.newPickupProtocol.pickupDate.formatted(.dateTime.day().month().year()))
+                        // MARK: - Handing in date
+                        Text(newProtocolVM.newPickupProtocol.handingInDate.formatted(.dateTime.day().month().year()))
                             .dateTextView()
                             .overlay(
                                 DatePicker(selection: $newProtocolVM.newPickupProtocol.pickupDate, displayedComponents: .date) {
@@ -113,20 +117,33 @@ struct AddNewProtocolView: View {
                         .newProtocolTextInput()
                     
                     // MARK: - Add photo
-                    Button {
-                        print("I will add the most beatiful photo one day.")
-                    } label: {
+                    PhotosPicker(selection: $photosPickerItems, matching: .images) {
                         HStack {
                             Image(systemName: "plus.square.fill")
                                 .opacity(0.5)
                             Text("Add Photo")
                         }
+                        .addPhotoButton()
                     }
-                    .addPhotoButton()
                     
                     // MARK: - Number of attached photos
-                    Text("Attached photos: \(newProtocolVM.newPickupProtocol.photos.count)")
-                        .font(.custom(FontsManager.Quicksand.regular, size: 18))
+                    ScrollView (.horizontal) {
+                        HStack {
+                            ForEach(0..<photos.count, id: \.self) { photoIndex in
+                                Image(uiImage: photos[photoIndex])
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .onTapGesture {
+                                        photosPickerItems.remove(at: photoIndex)
+                                    }
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 150)
+//                    Text("Attached photos: \(newProtocolVM.newPickupProtocol.photos.count)")
+//                        .font(.custom(FontsManager.Quicksand.regular, size: 18))
                 }
                 
                 Group {
@@ -218,6 +235,18 @@ struct AddNewProtocolView: View {
         }
         .padding(.horizontal, 32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onChange(of: photosPickerItems) { value in
+            Task {
+                photos = []
+                for photosPickerItem in photosPickerItems {
+                    if let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
+                        if let image = UIImage(data: data) {
+                            photos.append(image)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func saveProtocol() {
@@ -260,12 +289,25 @@ struct AddNewProtocolView: View {
             newProtocol.handingOutPersonName = newProtocolVM.newPickupProtocol.handingOutPersonName
             
             newProtocol.shop = MainViewModel.shared.selectedShop
+
+            saveProtocolPictures(transferProtocol: newProtocol)
             
             try moc.save()
             
             mainVM.shopScreensPage = .allProtocols
         } catch {
             // TODO: - Add error alert
+        }
+        
+        func saveProtocolPictures(transferProtocol: TransferProtocol) {
+            for picture in photos {
+                if let pictureData = picture.pngData() {
+                    let newPicture = HandingInPicture(context: moc)
+                    newPicture.id = UUID()
+                    newPicture.pictureData = pictureData
+                    newPicture.transferProtocol = transferProtocol
+                }
+            }
         }
     }
 }

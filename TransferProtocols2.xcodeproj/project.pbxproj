@@ -49,6 +49,7 @@
 		FD4A76E62B83970400013036 /* AddNewShopButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShopButtonView.swift; sourceTree = "<group>"; };
 		FD4A76E92B83983000013036 /* AddNewShopScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShopScreen.swift; sourceTree = "<group>"; };
 		FD4A76EC2B83A2C800013036 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		FD8785792B9A23DE0060348B /* TransferProtocols2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TransferProtocols2.entitlements; sourceTree = "<group>"; };
 		FDB8FB4E2B486342005D4F9F /* TransferProtocols2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferProtocols2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB8FB512B486342005D4F9F /* TransferProtocols2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferProtocols2App.swift; sourceTree = "<group>"; };
 		FDB8FB532B486342005D4F9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 		FDB8FB502B486342005D4F9F /* TransferProtocols2 */ = {
 			isa = PBXGroup;
 			children = (
+				FD8785792B9A23DE0060348B /* TransferProtocols2.entitlements */,
 				FDD8B92F2B83B26E00288D4A /* CoreData */,
 				FD4A76EB2B83A2BA00013036 /* Components&Helpers */,
 				FDB8FB7F2B48657F005D4F9F /* Styles */,
@@ -522,10 +524,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TransferProtocols2/TransferProtocols2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TransferProtocols2/Preview Content\"";
-				DEVELOPMENT_TEAM = XHTY5N4472;
+				DEVELOPMENT_TEAM = R7XN6FUQUL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TransferProtocols2/Info.plist;
@@ -538,7 +541,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = stepanfriedl.TransferProtocols2;
+				PRODUCT_BUNDLE_IDENTIFIER = stepanfriedl.TransferProtocols3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -551,10 +554,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TransferProtocols2/TransferProtocols2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TransferProtocols2/Preview Content\"";
-				DEVELOPMENT_TEAM = XHTY5N4472;
+				DEVELOPMENT_TEAM = R7XN6FUQUL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TransferProtocols2/Info.plist;
@@ -567,7 +571,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = stepanfriedl.TransferProtocols2;
+				PRODUCT_BUNDLE_IDENTIFIER = stepanfriedl.TransferProtocols3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
