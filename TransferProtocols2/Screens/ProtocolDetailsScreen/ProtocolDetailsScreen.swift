@@ -240,23 +240,37 @@ struct ProtocolDetailsScreen: View {
                         // Handing out customer’s name
                         Text("Customer’s name:")
                             .protocolDetailsTitle()
-                        Text(mainVM.selectedProtocol?.handingOutPersonName ?? "Unknown name")
+                        Text(mainVM.selectedProtocol?.handingOutCustomerName ?? "Unknown name")
                             .protocolDetailsText()
                         
                         // Handing out customer’s signature
                         Text("Customer’s signature:")
                             .protocolDetailsTitle()
-                        Image(uiImage: UIImage(data: Data()) ?? UIImage())
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: .infinity, maxHeight: 150)
+                        if let imageData = mainVM.selectedProtocol?.handingOutCustomerSignature,
+                           let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: .infinity, maxHeight: 150)
+                        }
+                        
+                        // Handing out company representative’s signature
+                        Text("Company representative’s name:")
+                            .protocolDetailsTitle()
+                        if let imageData = mainVM.selectedProtocol?.handingOutCompanyRepresentativeSignature,
+                           let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: .infinity, maxHeight: 150)
+                        }
                     } else {
                         Text("Item hasn’t been returned yet.")
                         
                         Button {
-                            print("FAKA")
+                            mainVM.shopScreensPage = .handOutProtocol
                         } label: {
-                            Text("Return".uppercased())
+                            Text("hand out".uppercased())
                         }
                         .saveButton()
                     }

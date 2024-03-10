@@ -5,6 +5,11 @@
         <attribute name="pictureData" optional="YES" attributeType="Binary"/>
         <relationship name="transferProtocol" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TransferProtocol" inverseName="handingInPictures" inverseEntity="TransferProtocol"/>
     </entity>
+    <entity name="HandingOutPicture" representedClassName="HandingOutPicture" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="pictureData" optional="YES" attributeType="Binary"/>
+        <relationship name="transferProtocol" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TransferProtocol" inverseName="handingOutPictures" inverseEntity="TransferProtocol"/>
+    </entity>
     <entity name="Shop" representedClassName="Shop" syncable="YES" codeGenerationType="class">
         <attribute name="companyName" optional="YES" attributeType="String"/>
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -38,11 +43,14 @@
         <attribute name="handingInSpecificationTitle2" optional="YES" attributeType="String"/>
         <attribute name="handingInSpecificationValue1" optional="YES" attributeType="String"/>
         <attribute name="handingInSpecificationValue2" optional="YES" attributeType="String"/>
+        <attribute name="handingOutCompanyRepresentativeName" optional="YES" attributeType="String"/>
         <attribute name="handingOutCompanyRepresentativeSignature" optional="YES" attributeType="Binary"/>
+        <attribute name="handingOutCustomerName" optional="YES" attributeType="String"/>
         <attribute name="handingOutCustomerSignature" optional="YES" attributeType="Binary"/>
         <attribute name="handingOutDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="handingOutPersonName" optional="YES" attributeType="String"/>
         <attribute name="handingOutPlace" optional="YES" attributeType="String"/>
+        <attribute name="handingOutSignatureDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="handingOutSignatureLocation" optional="YES" attributeType="String"/>
         <attribute name="handingOutSpecificationTitle1" optional="YES" attributeType="String"/>
         <attribute name="handingOutSpecificationTitle2" optional="YES" attributeType="String"/>
         <attribute name="handingOutSpecificationValue1" optional="YES" attributeType="String"/>
@@ -58,6 +66,7 @@
         <attribute name="shopPhoneNumber" optional="YES" attributeType="String"/>
         <attribute name="shopRegistrationNumber" optional="YES" attributeType="String"/>
         <relationship name="handingInPictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HandingInPicture" inverseName="transferProtocol" inverseEntity="HandingInPicture"/>
+        <relationship name="handingOutPictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HandingOutPicture" inverseName="transferProtocol" inverseEntity="HandingOutPicture"/>
         <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="protocols" inverseEntity="Shop"/>
     </entity>
 </model>

@@ -30,6 +30,8 @@ struct MainScreen: View {
                     case .protocolDetails:
                         ProtocolDetailsScreen()
                             .transition(.move(edge: .trailing))
+                    case .handOutProtocol:
+                        HandOutProtocolScreen()
                     }
                     
                     // MARK: - Bottom menu

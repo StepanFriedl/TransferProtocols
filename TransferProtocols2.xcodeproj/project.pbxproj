@@ -14,6 +14,7 @@
 		FD4A76E72B83970400013036 /* AddNewShopButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A76E62B83970400013036 /* AddNewShopButtonView.swift */; };
 		FD4A76EA2B83983000013036 /* AddNewShopScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A76E92B83983000013036 /* AddNewShopScreen.swift */; };
 		FD4A76ED2B83A2C800013036 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A76EC2B83A2C800013036 /* ImagePicker.swift */; };
+		FD77BA1B2B9DE133006F009F /* HandOutProtocolScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD77BA1A2B9DE133006F009F /* HandOutProtocolScreen.swift */; };
 		FDB8FB522B486342005D4F9F /* TransferProtocols2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB512B486342005D4F9F /* TransferProtocols2App.swift */; };
 		FDB8FB542B486342005D4F9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB532B486342005D4F9F /* ContentView.swift */; };
 		FDB8FB562B486343005D4F9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDB8FB552B486343005D4F9F /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		FDBC6A812B8F951F00C2A68F /* ContactLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBC6A802B8F951F00C2A68F /* ContactLink.swift */; };
 		FDD8B9322B83B28C00288D4A /* TransferProtocols.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9302B83B28C00288D4A /* TransferProtocols.xcdatamodeld */; };
 		FDD8B9342B83B44300288D4A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9332B83B44300288D4A /* DataController.swift */; };
+		FDF7972C2B9DE7A6004E1302 /* HandingOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF7972B2B9DE7A6004E1302 /* HandingOutViewModel.swift */; };
 		FDFA3A612B8E48E20025F656 /* ProtocolDetailsStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */; };
 		FDFFD9DF2B94A03F00EA2E28 /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFFD9DE2B94A03F00EA2E28 /* SignatureView.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +51,7 @@
 		FD4A76E62B83970400013036 /* AddNewShopButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShopButtonView.swift; sourceTree = "<group>"; };
 		FD4A76E92B83983000013036 /* AddNewShopScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShopScreen.swift; sourceTree = "<group>"; };
 		FD4A76EC2B83A2C800013036 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		FD77BA1A2B9DE133006F009F /* HandOutProtocolScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandOutProtocolScreen.swift; sourceTree = "<group>"; };
 		FD8785792B9A23DE0060348B /* TransferProtocols2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TransferProtocols2.entitlements; sourceTree = "<group>"; };
 		FDB8FB4E2B486342005D4F9F /* TransferProtocols2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferProtocols2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB8FB512B486342005D4F9F /* TransferProtocols2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferProtocols2App.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		FDBC6A802B8F951F00C2A68F /* ContactLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLink.swift; sourceTree = "<group>"; };
 		FDD8B9312B83B28C00288D4A /* TransferProtocols.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TransferProtocols.xcdatamodel; sourceTree = "<group>"; };
 		FDD8B9332B83B44300288D4A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		FDF7972B2B9DE7A6004E1302 /* HandingOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandingOutViewModel.swift; sourceTree = "<group>"; };
 		FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolDetailsStyles.swift; sourceTree = "<group>"; };
 		FDFFD9DE2B94A03F00EA2E28 /* SignatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +128,15 @@
 				FDBC6A802B8F951F00C2A68F /* ContactLink.swift */,
 			);
 			path = "Components&Helpers";
+			sourceTree = "<group>";
+		};
+		FD77BA192B9DE0F9006F009F /* HandOutProtocolScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FDF7972A2B9DE797004E1302 /* ViewModels */,
+				FD77BA1A2B9DE133006F009F /* HandOutProtocolScreen.swift */,
+			);
+			path = HandOutProtocolScreen;
 			sourceTree = "<group>";
 		};
 		FDB8FB452B486342005D4F9F = {
@@ -192,14 +205,15 @@
 		FDB8FB6E2B4863B5005D4F9F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				FDFFD9DD2B94A03300EA2E28 /* SignatureView */,
 				FDB8FB6F2B4863C6005D4F9F /* AddNewProtocolView */,
 				FD4A76E82B83980A00013036 /* AddNewShopView */,
 				FDB8FB722B4863E4005D4F9F /* AllProtocolsView */,
+				FD77BA192B9DE0F9006F009F /* HandOutProtocolScreen */,
 				FDB8FB752B4863FC005D4F9F /* MainScreen */,
 				FDB8FB7D2B486446005D4F9F /* ProtocolDetailsScreen */,
 				FDB8FB7E2B486450005D4F9F /* SettingsView */,
 				FD4A76E02B838C4400013036 /* ShopsScreen */,
+				FDFFD9DD2B94A03300EA2E28 /* SignatureView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -273,6 +287,14 @@
 				FDD8B9332B83B44300288D4A /* DataController.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FDF7972A2B9DE797004E1302 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FDF7972B2B9DE7A6004E1302 /* HandingOutViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FDFA3A5E2B8E32290025F656 /* ViewModels */ = {
@@ -375,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDBC6A7F2B8F93E300C2A68F /* Extensions.swift in Sources */,
+				FD77BA1B2B9DE133006F009F /* HandOutProtocolScreen.swift in Sources */,
 				FDBC6A812B8F951F00C2A68F /* ContactLink.swift in Sources */,
 				FDD8B9322B83B28C00288D4A /* TransferProtocols.xcdatamodeld in Sources */,
 				FD4A76E52B83938900013036 /* ShopButtonView.swift in Sources */,
@@ -394,6 +417,7 @@
 				FDB8FB712B4863DA005D4F9F /* AddNewProtocolView.swift in Sources */,
 				FD4A76EA2B83983000013036 /* AddNewShopScreen.swift in Sources */,
 				FDB8FB832B486659005D4F9F /* BottomMenuButton.swift in Sources */,
+				FDF7972C2B9DE7A6004E1302 /* HandingOutViewModel.swift in Sources */,
 				FD4A76E22B838C5700013036 /* ShopsScreen.swift in Sources */,
 				FD27934E2B498457007DC4C1 /* AddNewProtocolViewModel.swift in Sources */,
 				FDB8FB812B48658E005D4F9F /* BottomMenuStyles.swift in Sources */,
