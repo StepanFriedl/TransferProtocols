@@ -17,7 +17,7 @@ struct AddNewProtocolView: View {
     @ObservedObject private var mainVM = MainViewModel.shared
     
     @State private var photosPickerItems: [PhotosPickerItem] = []
-    @State private var photos: [UIImage] = []
+//    @State private var photos: [UIImage] = []
     
     var body: some View {
         // MARK: - Main View
@@ -90,7 +90,6 @@ struct AddNewProtocolView: View {
                     // MARK: - Handing in specification 2
                     if let handingInSpecificationTitle2 = mainVM.selectedShop?.handingInSpecification2Title,
                        handingInSpecificationTitle2.count > 0 {
-                        // MARK: - Handing in specification 1
                         TextField(handingInSpecificationTitle2, text: $newProtocolVM.newPickupProtocol.handingInSpecification2)
                             .newProtocolTextInput()
                     }
@@ -130,8 +129,8 @@ struct AddNewProtocolView: View {
                     if photosPickerItems.count > 0 {
                         ScrollView (.horizontal) {
                             HStack {
-                                ForEach(0..<photos.count, id: \.self) { photoIndex in
-                                    Image(uiImage: photos[photoIndex])
+                                ForEach(0..<newProtocolVM.photos.count, id: \.self) { photoIndex in
+                                    Image(uiImage: newProtocolVM.photos[photoIndex])
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(height: 150)
@@ -241,7 +240,7 @@ struct AddNewProtocolView: View {
                     
                     // MARK: - Save button
                     Button {
-                        saveProtocol()
+                        newProtocolVM.saveProtocol(moc: moc)
                     } label: {
                         Text("SAVE")
                             .saveButton()
@@ -256,75 +255,13 @@ struct AddNewProtocolView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onChange(of: photosPickerItems) { value in
             Task {
-                photos = []
+                newProtocolVM.photos = []
                 for photosPickerItem in photosPickerItems {
                     if let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
                         if let image = UIImage(data: data) {
-                            photos.append(image)
+                            newProtocolVM.photos.append(image)
                         }
                     }
-                }
-            }
-        }
-    }
-    
-    func saveProtocol() {
-        do {
-            guard let selectedShop = mainVM.selectedShop else { return }
-            let newProtocol = TransferProtocol(context: moc)
-            newProtocol.shopPhoneNumber = selectedShop.phoneNumber ?? ""
-            newProtocol.shopRegistrationNumber = selectedShop.registrationNumber ?? ""
-            newProtocol.shopName = selectedShop.companyName ?? ""
-            newProtocol.shopLogoImage = selectedShop.logoImage ?? Data()
-            newProtocol.shopEmail = selectedShop.email ?? ""
-            newProtocol.prototcolTitle = selectedShop.transferProtocolTitle
-            newProtocol.itemSpecificationTitle1 = selectedShop.itemSpecification1Title
-            newProtocol.itemSpecificationTitle2 = selectedShop.itemSpecification2Title
-            newProtocol.itemSpecificationValue1 = newProtocolVM.newPickupProtocol.itemSpecification1
-            newProtocol.itemSpecificationValue2 = newProtocolVM.newPickupProtocol.itemSpecification2
-            newProtocol.handingOutSpecificationTitle1 = selectedShop.handingOutSpecification1Title
-            newProtocol.handingOutSpecificationTitle2 = selectedShop.handingOutSpecification2Title
-            newProtocol.handingOutSpecificationValue1 = newProtocolVM.newPickupProtocol.handingOutSpecification1
-            newProtocol.handingOutSpecificationValue2 = newProtocolVM.newPickupProtocol.handingOutSpecification2
-            newProtocol.handingOutPlace = nil
-            newProtocol.handingOutDate = nil
-            newProtocol.handingOutCustomerSignature = nil
-            newProtocol.handingOutCompanyRepresentativeSignature = nil
-            newProtocol.handingInSpecificationTitle1 = selectedShop.handingInSpecification1Title
-            newProtocol.handingInSpecificationTitle2 = selectedShop.handingInSpecification2Title
-            newProtocol.handingInSpecificationValue1 = newProtocolVM.newPickupProtocol.handingInSpecification1
-            newProtocol.handingInSpecificationValue2 = newProtocolVM.newPickupProtocol.handingInSpecification2
-            newProtocol.handingInPlace = newProtocolVM.newPickupProtocol.handingInPlace
-            newProtocol.handingInPersonName = newProtocolVM.newPickupProtocol.handingInPerson
-            newProtocol.handingInDate = newProtocolVM.newPickupProtocol.handingInDate
-            newProtocol.handingInCustomerSignature = newProtocolVM.newPickupProtocol.handingInCustomerSignature ?? Data()
-            newProtocol.handingInCompanyRepresentativeSignature = newProtocolVM.newPickupProtocol.handingInCompanyRepresentativeSignature ?? Data()
-            newProtocol.handedOut = nil
-            newProtocol.customerPhoneNumber = newProtocolVM.newPickupProtocol.customersPhoneNumber
-            newProtocol.customerFullName = newProtocolVM.newPickupProtocol.customersFullName
-            newProtocol.customerEmail = newProtocolVM.newPickupProtocol.customersEmailAddress
-            newProtocol.customerBirthDate = newProtocolVM.newPickupProtocol.customersBirthDate
-            newProtocol.created = Date.now
-            newProtocol.handingOutPersonName = newProtocolVM.newPickupProtocol.handingOutPersonName
-            
-            newProtocol.shop = MainViewModel.shared.selectedShop
-
-            saveProtocolPictures(transferProtocol: newProtocol)
-            
-            try moc.save()
-            
-            mainVM.shopScreensPage = .allProtocols
-        } catch {
-            // TODO: - Add error alert
-        }
-        
-        func saveProtocolPictures(transferProtocol: TransferProtocol) {
-            for picture in photos {
-                if let pictureData = picture.pngData() {
-                    let newPicture = HandingInPicture(context: moc)
-                    newPicture.id = UUID()
-                    newPicture.pictureData = pictureData
-                    newPicture.transferProtocol = transferProtocol
                 }
             }
         }

@@ -12,6 +12,7 @@ enum ShopScreensPage {
     case addNewProtocol
     case settings
     case protocolDetails
+    case handOutProtocol
 }
 
 enum MainViewsScreen {
@@ -44,6 +45,6 @@ class MainViewModel: ObservableObject {
     var signatureViewAction: (UIImage) -> Void = { _ in }
     
     func isProtocolsItemReturned(transferProtocol: TransferProtocol?) -> Bool {
-        return transferProtocol?.handingOutCustomerSignature?.isEmpty ?? false
+        return transferProtocol?.handingOutPlace?.count ?? 0 > 0
     }
 }
