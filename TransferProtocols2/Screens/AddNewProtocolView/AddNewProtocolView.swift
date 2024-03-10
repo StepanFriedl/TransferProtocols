@@ -126,24 +126,43 @@ struct AddNewProtocolView: View {
                         .addPhotoButton()
                     }
                     
-                    // MARK: - Number of attached photos
-                    ScrollView (.horizontal) {
-                        HStack {
-                            ForEach(0..<photos.count, id: \.self) { photoIndex in
-                                Image(uiImage: photos[photoIndex])
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 150)
-                                    .onTapGesture {
-                                        photosPickerItems.remove(at: photoIndex)
-                                    }
+                    // MARK: - Selected photos
+                    if photosPickerItems.count > 0 {
+                        ScrollView (.horizontal) {
+                            HStack {
+                                ForEach(0..<photos.count, id: \.self) { photoIndex in
+                                    Image(uiImage: photos[photoIndex])
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 150)
+                                        .overlay {
+                                            VStack {
+                                                HStack {
+                                                    Spacer()
+                                                    Button {
+                                                        photosPickerItems.remove(at: photoIndex)
+                                                    } label: {
+                                                        Image(systemName: "xmark.circle.fill")
+                                                            .resizable()
+                                                            .frame(width: 16, height: 16)
+                                                            .foregroundStyle(.red)
+                                                    }
+                                                    .background(
+                                                        Circle()
+                                                            .fill(.white)
+                                                    )
+                                                    .offset(x: 8, y: -8)
+                                                }
+                                                Spacer()
+                                            }
+                                        }
+                                }
                             }
+                            .padding(.top, 8)
                         }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 150)
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 150)
-//                    Text("Attached photos: \(newProtocolVM.newPickupProtocol.photos.count)")
-//                        .font(.custom(FontsManager.Quicksand.regular, size: 18))
                 }
                 
                 Group {
