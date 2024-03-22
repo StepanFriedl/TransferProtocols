@@ -17,6 +17,7 @@ struct AddNewShopScreen: View {
     @State private var phoneNumber: String = ""
     @State private var email: String = ""
     @State private var protocolsTitle: String = ""
+    @State private var protocolDescription: String = ""
     @State private var itemSpecificationTitle1: String = ""
     @State private var itemSpecificationTitle2: String = ""
     @State private var handingInTitle1: String = ""
@@ -63,6 +64,10 @@ struct AddNewShopScreen: View {
                     
                     // MARK: - Protocol title
                     TextField("Protocol’s title", text: $protocolsTitle)
+                        .newProtocolTextInput()
+                    
+                    // MARK: - Protocol description
+                    TextField("Protocol’s description", text: $protocolDescription, axis: .vertical)
                         .newProtocolTextInput()
                     
                     // MARK: - Item specification row 1's title
@@ -169,6 +174,7 @@ struct AddNewShopScreen: View {
             shop.email = email
             shop.created = Date.now
             shop.transferProtocolTitle = protocolsTitle
+            shop.protocolDescription = protocolDescription
             shop.itemSpecification1Title = itemSpecificationTitle1
             shop.itemSpecification2Title = itemSpecificationTitle2
             shop.handingInSpecification1Title = handingInTitle1

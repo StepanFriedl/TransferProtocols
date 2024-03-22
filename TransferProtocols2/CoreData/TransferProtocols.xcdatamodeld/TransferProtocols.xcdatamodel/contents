@@ -23,6 +23,7 @@
         <attribute name="itemSpecification2Title" optional="YES" attributeType="String"/>
         <attribute name="logoImage" optional="YES" attributeType="Binary"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="protocolDescription" optional="YES" attributeType="String"/>
         <attribute name="registrationNumber" optional="YES" attributeType="String"/>
         <attribute name="transferProtocolTitle" optional="YES" attributeType="String"/>
         <relationship name="protocols" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferProtocol" inverseName="shop" inverseEntity="TransferProtocol"/>
