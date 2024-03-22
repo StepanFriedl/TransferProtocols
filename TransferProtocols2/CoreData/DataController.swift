@@ -7,10 +7,10 @@
 
 import CoreData
 import Foundation
-import CloudKit
+//import CloudKit
 
 class DataController: ObservableObject {
-    let container = NSPersistentCloudKitContainer(name: "TransferProtocols")
+    let container = NSPersistentContainer(name: "TransferProtocols")
     
     init() {
         container.loadPersistentStores { description, error in

@@ -124,9 +124,6 @@ struct ProtocolDetailsScreen: View {
                         }
                     }
                     
-                    // MARK: - Photos
-                    // TODO: - Add photos when ready
-                    
                     // MARK: - Handing in specifications
                     Text("Handing in specification")
                         .protocolDetailsBigTitle()
@@ -295,6 +292,14 @@ struct ProtocolDetailsScreen: View {
                                 .padding(.horizontal, 16)
                         }
                         Spacer()
+                        Button {
+                            ShareProtocolViewModel(
+                                protocolPictures: protocolPictures
+                            ).shareThePDFView()
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .padding(.horizontal, 16)
+                        }
                     }
                 }
                 .foregroundStyle(.black)
