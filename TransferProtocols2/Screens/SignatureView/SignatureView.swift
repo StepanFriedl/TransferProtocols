@@ -50,13 +50,20 @@ struct SignatureView: View {
                 ZStack {
                     Canvas { context, _ in
                         for drawing in drawings {
-                            let _ = Path { path in
-                                if !drawing.isEmpty {
-                                    path.move(to: drawing[0])
-                                    for point in drawing.dropFirst() {
-                                        path.addLine(to: point)
+                            if drawing.count == 1 {
+                                if let locationX = drawing.first?.x,
+                                   let locationY = drawing.first?.y {
+                                    context.fill(Path(ellipseIn: CGRect(x: locationX - 2.5, y: locationY - 2.5, width: 5, height: 5)), with: .color(.black))
+                                }
+                            } else {
+                                let _ = Path { path in
+                                    if !drawing.isEmpty {
+                                        path.move(to: drawing[0])
+                                        for point in drawing.dropFirst() {
+                                            path.addLine(to: point)
+                                        }
+                                        context.stroke(path, with: .color(.black), lineWidth: 5.0)
                                     }
-                                    context.stroke(path, with: .color(.black), lineWidth: 5.0)
                                 }
                             }
                         }
@@ -75,12 +82,17 @@ struct SignatureView: View {
                     .gesture(
                         DragGesture()
                             .onChanged { value in
+                                print("Location\(value.location)")
                                 updateDrawing(point: value.location)
                             }
                             .onEnded { _ in
                                 finishDrawing()
                             }
                     )
+                    .onTapGesture { location in
+                        print("Location\(location)")
+                        addDot(at: location)
+                    }
                 }
                 
                 Divider()
@@ -97,6 +109,12 @@ struct SignatureView: View {
         .rotationEffect(.degrees(-90))
     }
     
+    func addDot(at point: CGPoint) {
+        drawings.append([point])
+        print(drawings.count)
+        print(drawings)
+    }
+    
     func updateDrawing(point: CGPoint) {
         currentDrawing.append(point)
     }
@@ -104,6 +122,8 @@ struct SignatureView: View {
     func finishDrawing() {
         drawings.append(currentDrawing)
         currentDrawing.removeAll()
+        print(drawings.count)
+        print(drawings)
     }
     
     func exportDrawing() -> UIImage? {
@@ -113,18 +133,26 @@ struct SignatureView: View {
             context.cgContext.setLineWidth(2)
             
             for drawing in drawings {
-                for (index, point) in drawing.enumerated() {
-                    if index == 0 {
-                        context.cgContext.move(to: CGPoint(x: point.x, y: point.y))
-                    } else {
-                        context.cgContext.addLine(to: CGPoint(x: point.x, y: point.y))
+                if drawing.count == 1 {
+                    // If drawing contains only one point, draw a dot
+                    let point = drawing[0]
+                    context.cgContext.addArc(center: CGPoint(x: point.x, y: point.y), radius: 2, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+                    context.cgContext.fillPath()
+                } else {
+                    for (index, point) in drawing.enumerated() {
+                        if index == 0 {
+                            context.cgContext.move(to: CGPoint(x: point.x, y: point.y))
+                        } else {
+                            context.cgContext.addLine(to: CGPoint(x: point.x, y: point.y))
+                        }
                     }
+                    context.cgContext.strokePath()
                 }
-                context.cgContext.strokePath()
             }
         }
         return image
     }
+
 }
 
 
