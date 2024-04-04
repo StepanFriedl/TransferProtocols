@@ -14,6 +14,7 @@
 		FD4A76E72B83970400013036 /* AddNewShopButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A76E62B83970400013036 /* AddNewShopButtonView.swift */; };
 		FD4A76EA2B83983000013036 /* AddNewShopScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A76E92B83983000013036 /* AddNewShopScreen.swift */; };
 		FD4A76ED2B83A2C800013036 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4A76EC2B83A2C800013036 /* ImagePicker.swift */; };
+		FD692E5D2BADBDE400588BDD /* PDFStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD692E5C2BADBDE400588BDD /* PDFStyles.swift */; };
 		FD77BA1B2B9DE133006F009F /* HandOutProtocolScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD77BA1A2B9DE133006F009F /* HandOutProtocolScreen.swift */; };
 		FDB8FB522B486342005D4F9F /* TransferProtocols2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB512B486342005D4F9F /* TransferProtocols2App.swift */; };
 		FDB8FB542B486342005D4F9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB8FB532B486342005D4F9F /* ContentView.swift */; };
@@ -40,6 +41,9 @@
 		FDD8B9342B83B44300288D4A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8B9332B83B44300288D4A /* DataController.swift */; };
 		FDF7972C2B9DE7A6004E1302 /* HandingOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF7972B2B9DE7A6004E1302 /* HandingOutViewModel.swift */; };
 		FDFA3A612B8E48E20025F656 /* ProtocolDetailsStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */; };
+		FDFF32AF2BAC95E20077936A /* ShareProtocolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFF32AE2BAC95E20077936A /* ShareProtocolViewModel.swift */; };
+		FDFF32B32BAC96740077936A /* TransferProtocolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFF32B22BAC96740077936A /* TransferProtocolView.swift */; };
+		FDFF32B52BAC969F0077936A /* TransferProtocolImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFF32B42BAC969F0077936A /* TransferProtocolImageView.swift */; };
 		FDFFD9DF2B94A03F00EA2E28 /* SignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFFD9DE2B94A03F00EA2E28 /* SignatureView.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +55,7 @@
 		FD4A76E62B83970400013036 /* AddNewShopButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShopButtonView.swift; sourceTree = "<group>"; };
 		FD4A76E92B83983000013036 /* AddNewShopScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShopScreen.swift; sourceTree = "<group>"; };
 		FD4A76EC2B83A2C800013036 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		FD692E5C2BADBDE400588BDD /* PDFStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFStyles.swift; sourceTree = "<group>"; };
 		FD77BA1A2B9DE133006F009F /* HandOutProtocolScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandOutProtocolScreen.swift; sourceTree = "<group>"; };
 		FD8785792B9A23DE0060348B /* TransferProtocols2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TransferProtocols2.entitlements; sourceTree = "<group>"; };
 		FDB8FB4E2B486342005D4F9F /* TransferProtocols2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferProtocols2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +85,9 @@
 		FDD8B9332B83B44300288D4A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		FDF7972B2B9DE7A6004E1302 /* HandingOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandingOutViewModel.swift; sourceTree = "<group>"; };
 		FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolDetailsStyles.swift; sourceTree = "<group>"; };
+		FDFF32AE2BAC95E20077936A /* ShareProtocolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareProtocolViewModel.swift; sourceTree = "<group>"; };
+		FDFF32B22BAC96740077936A /* TransferProtocolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferProtocolView.swift; sourceTree = "<group>"; };
+		FDFF32B42BAC969F0077936A /* TransferProtocolImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferProtocolImageView.swift; sourceTree = "<group>"; };
 		FDFFD9DE2B94A03F00EA2E28 /* SignatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,6 +265,8 @@
 		FDB8FB7D2B486446005D4F9F /* ProtocolDetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				FDFF32B12BAC965F0077936A /* Subscreens */,
+				FDFF32B02BAC96550077936A /* ViewModel */,
 				FDB8FB882B486965005D4F9F /* ProtocolDetailsScreen.swift */,
 			);
 			path = ProtocolDetailsScreen;
@@ -276,6 +286,7 @@
 				FDB8FB802B48658E005D4F9F /* BottomMenuStyles.swift */,
 				FD38FABA2B498917001DC91B /* NewProtocolFormStyles.swift */,
 				FDFA3A602B8E48E20025F656 /* ProtocolDetailsStyles.swift */,
+				FD692E5C2BADBDE400588BDD /* PDFStyles.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -303,6 +314,23 @@
 				FDB8FB842B4866A0005D4F9F /* MainVM.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FDFF32B02BAC96550077936A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FDFF32AE2BAC95E20077936A /* ShareProtocolViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FDFF32B12BAC965F0077936A /* Subscreens */ = {
+			isa = PBXGroup;
+			children = (
+				FDFF32B22BAC96740077936A /* TransferProtocolView.swift */,
+				FDFF32B42BAC969F0077936A /* TransferProtocolImageView.swift */,
+			);
+			path = Subscreens;
 			sourceTree = "<group>";
 		};
 		FDFFD9DC2B949FB400EA2E28 /* ViewModels */ = {
@@ -416,13 +444,17 @@
 				FD38FABB2B498917001DC91B /* NewProtocolFormStyles.swift in Sources */,
 				FDB8FB712B4863DA005D4F9F /* AddNewProtocolView.swift in Sources */,
 				FD4A76EA2B83983000013036 /* AddNewShopScreen.swift in Sources */,
+				FDFF32AF2BAC95E20077936A /* ShareProtocolViewModel.swift in Sources */,
+				FDFF32B52BAC969F0077936A /* TransferProtocolImageView.swift in Sources */,
 				FDB8FB832B486659005D4F9F /* BottomMenuButton.swift in Sources */,
 				FDF7972C2B9DE7A6004E1302 /* HandingOutViewModel.swift in Sources */,
 				FD4A76E22B838C5700013036 /* ShopsScreen.swift in Sources */,
 				FD27934E2B498457007DC4C1 /* AddNewProtocolViewModel.swift in Sources */,
+				FD692E5D2BADBDE400588BDD /* PDFStyles.swift in Sources */,
 				FDB8FB812B48658E005D4F9F /* BottomMenuStyles.swift in Sources */,
 				FDB8FB872B48687A005D4F9F /* SettingsView.swift in Sources */,
 				FD4A76E72B83970400013036 /* AddNewShopButtonView.swift in Sources */,
+				FDFF32B32BAC96740077936A /* TransferProtocolView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
