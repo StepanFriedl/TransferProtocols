@@ -8,7 +8,21 @@
 import SwiftUI
 import PhotosUI
 
+enum AddNewProtocolInputs {
+    case customerName
+    case customerPhone
+    case customerEmail
+    case itemSpecOne
+    case itemSpecTwo
+    case handingInSpecOne
+    case handingInSpecTwo
+    case handingInLocation
+    case handingInShopsRepresentativeName
+    case signatureLocation
+}
+
 struct AddNewProtocolView: View {
+    @FocusState private var inputFocused: AddNewProtocolInputs?
     @Environment(\.managedObjectContext) var moc
 //    @FetchRequest(sortDescriptors: []) var protocols: FetchedResults<TransferProtocol>
     
@@ -30,17 +44,33 @@ struct AddNewProtocolView: View {
                     // MARK: - Customer’s full name
                     TextField("Customer’s full name", text: $newProtocolVM.newPickupProtocol.customersFullName)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .customerName)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .customerPhone
+                        }
                     
                     // MARK: - Customer’s phone number
                     TextField("Customer’s phone number", text: $newProtocolVM.newPickupProtocol.customersPhoneNumber)
                         .newProtocolTextInput()
                         .keyboardType(.phonePad)
+                        .focused($inputFocused, equals: .customerPhone)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .customerEmail
+                        }
                     
                     // MARK: - Customer’s email address
                     TextField("Customer’s email address", text: $newProtocolVM.newPickupProtocol.customersEmailAddress)
                         .newProtocolTextInput()
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .focused($inputFocused, equals: .customerEmail)
+                        .onSubmit {
+                            inputFocused = Optional.none
+                        }
+                        .submitLabel(.next)
                     
                     // MARK: - Customer’s birth date
                     HStack {
@@ -71,6 +101,16 @@ struct AddNewProtocolView: View {
                        itemSpecificationTitle1.count > 0 {
                         TextField(itemSpecificationTitle1, text: $newProtocolVM.newPickupProtocol.itemSpecification1)
                             .newProtocolTextInput()
+                            .focused($inputFocused, equals: .itemSpecOne)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                if let itemSpecificationTitle2 = mainVM.selectedShop?.itemSpecification2Title,
+                                   itemSpecificationTitle2.count > 0 {
+                                    inputFocused = .itemSpecTwo
+                                } else {
+                                    inputFocused = .handingInSpecOne
+                                }
+                            }
                     }
                     
                     // MARK: - Item specification 2
@@ -78,6 +118,19 @@ struct AddNewProtocolView: View {
                        itemSpecificationTitle2.count > 0 {
                         TextField(itemSpecificationTitle2, text: $newProtocolVM.newPickupProtocol.itemSpecification2)
                             .newProtocolTextInput()
+                            .focused($inputFocused, equals: .itemSpecTwo)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                if let handingInSpecificationTitle1 = mainVM.selectedShop?.handingInSpecification1Title,
+                                   handingInSpecificationTitle1.count > 0 {
+                                    inputFocused = .handingInSpecOne
+                                } else if let handingInSpecificationTitle2 = mainVM.selectedShop?.handingInSpecification2Title,
+                                          handingInSpecificationTitle2.count > 0 {
+                                    inputFocused = .handingInSpecTwo
+                                } else {
+                                    inputFocused = .handingInLocation
+                                }
+                            }
                     }
                     
                     // MARK: - Handing in specification 1
@@ -85,6 +138,16 @@ struct AddNewProtocolView: View {
                        handingInSpecificationTitle1.count > 0 {
                         TextField(handingInSpecificationTitle1, text: $newProtocolVM.newPickupProtocol.handingInSpecification1)
                             .newProtocolTextInput()
+                            .focused($inputFocused, equals: .handingInSpecOne)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                if let handingInSpecificationTitle2 = mainVM.selectedShop?.handingInSpecification2Title,
+                                   handingInSpecificationTitle2.count > 0 {
+                                    inputFocused = .handingInSpecTwo
+                                } else {
+                                    inputFocused = .handingInLocation
+                                }
+                            }
                     }
                     
                     // MARK: - Handing in specification 2
@@ -92,12 +155,22 @@ struct AddNewProtocolView: View {
                        handingInSpecificationTitle2.count > 0 {
                         TextField(handingInSpecificationTitle2, text: $newProtocolVM.newPickupProtocol.handingInSpecification2)
                             .newProtocolTextInput()
+                            .focused($inputFocused, equals: .handingInSpecTwo)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                inputFocused = .handingInLocation
+                            }
                     }
                     
                     HStack {
                         // MARK: - Handing in location
                         TextField("Handing in location", text: $newProtocolVM.newPickupProtocol.handingInLocation)
                             .newProtocolTextInput()
+                            .focused($inputFocused, equals: .handingInLocation)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                inputFocused = Optional.none
+                            }
                         
                         // MARK: - Handing in date
                         Text(newProtocolVM.newPickupProtocol.handingInDate.formatted(.dateTime.day().month().year()))
@@ -110,10 +183,17 @@ struct AddNewProtocolView: View {
                                     .opacity(0.1)
                             )
                     }
-                    
+                }
+                
+                Group {
                     // MARK: - Handing in shop representative’s name
                     TextField("Shop representative’s name", text: $newProtocolVM.newPickupProtocol.handingInShopsRepresentativeName)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .handingInShopsRepresentativeName)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = Optional.none
+                        }
                     
                     // MARK: - Add photo
                     PhotosPicker(selection: $photosPickerItems, matching: .images) {
@@ -169,6 +249,11 @@ struct AddNewProtocolView: View {
                         // MARK: - Signature location
                         TextField("Signature location", text: $newProtocolVM.newPickupProtocol.signatureLocation)
                             .newProtocolTextInput()
+                            .focused($inputFocused, equals: .signatureLocation)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                inputFocused = Optional.none
+                            }
                         
                         // MARK: - Signature date
                         Text(newProtocolVM.newPickupProtocol.signatureDate.formatted(.dateTime.day().month().year()))

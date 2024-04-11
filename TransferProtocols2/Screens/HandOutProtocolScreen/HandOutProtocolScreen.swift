@@ -8,7 +8,17 @@
 import SwiftUI
 import PhotosUI
 
+enum HandOutProtocolInputs {
+    case specificationOne
+    case specificationTwo
+    case location
+    case signatureLocation
+    case customerName
+    case shopRepresentativeName
+}
+
 struct HandOutProtocolScreen: View {
+    @FocusState private var inputFocused: HandOutProtocolInputs?
     @Environment(\.managedObjectContext) var moc
     
     @ObservedObject private var mainVM = MainViewModel.shared
@@ -22,6 +32,16 @@ struct HandOutProtocolScreen: View {
                    handingOutSpecificationTitle1.count > 0 {
                     TextField(handingOutSpecificationTitle1, text: $handingOutVM.handingOutProtocol.handingOutSpecification1)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .specificationOne)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            if let handingOutSpecificationTitle2 = mainVM.selectedShop?.handingOutSpecification2Title,
+                               handingOutSpecificationTitle2.count > 0 {
+                                inputFocused = .specificationTwo
+                            } else {
+                                inputFocused = Optional.none
+                            }
+                        }
                 }
                 
                 // MARK: - Handing out specification 2
@@ -29,6 +49,11 @@ struct HandOutProtocolScreen: View {
                    handingOutSpecificationTitle2.count > 0 {
                     TextField(handingOutSpecificationTitle2, text: $handingOutVM.handingOutProtocol.handingOutSpecification2)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .specificationTwo)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = Optional.none
+                        }
                 }
                 
                 // MARK: - Handing out photos
@@ -78,37 +103,56 @@ struct HandOutProtocolScreen: View {
                     .frame(height: 150)
                 }
                 
-                // MARK: - Handing out location
-                TextField("Handing out location", text: $handingOutVM.handingOutProtocol.handingOutPlace)
-                    .newProtocolTextInput()
+                HStack {
+                    // MARK: - Handing out location
+                    TextField("Handing out location", text: $handingOutVM.handingOutProtocol.handingOutPlace)
+                        .newProtocolTextInput()
+                        .focused($inputFocused, equals: .location)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = Optional.none
+                        }
+                    
+                    // MARK: - Handing out date
+                    Text(handingOutVM.handingOutProtocol.handingOutDate.formatted( .dateTime.day().month().year()))
+                        .dateTextView()
+                        .overlay(
+                            DatePicker(selection: $handingOutVM.handingOutProtocol.handingOutDate, displayedComponents: .date) {}
+                                .padding(8)
+                                .foregroundStyle(.gray)
+                                .opacity(0.1)
+                        )
+                }
                 
-                // MARK: - Handing out date
-                Text(handingOutVM.handingOutProtocol.handingOutDate.formatted( .dateTime.day().month().year()))
-                    .dateTextView()
-                    .overlay(
-                        DatePicker(selection: $handingOutVM.handingOutProtocol.handingOutDate, displayedComponents: .date) {}
-                            .padding(8)
-                            .foregroundStyle(.gray)
-                            .opacity(0.1)
-                    )
-                
-                // MARK: - Handing out signature location
-                TextField("Signature location", text: $handingOutVM.handingOutProtocol.handingOutSignatureLocation)
-                    .newProtocolTextInput()
-                
-                // MARK: - Handing out signature date
-                Text(handingOutVM.handingOutProtocol.handingOutSignatureDate.formatted( .dateTime.day().month().year()))
-                    .dateTextView()
-                    .overlay(
-                        DatePicker(selection: $handingOutVM.handingOutProtocol.handingOutSignatureDate, displayedComponents: .date) {}
-                            .padding(8)
-                            .foregroundStyle(.gray)
-                            .opacity(0.1)
-                    )
+                HStack {
+                    // MARK: - Handing out signature location
+                    TextField("Signature location", text: $handingOutVM.handingOutProtocol.handingOutSignatureLocation)
+                        .newProtocolTextInput()
+                        .focused($inputFocused, equals: .signatureLocation)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = Optional.none
+                        }
+                    
+                    // MARK: - Handing out signature date
+                    Text(handingOutVM.handingOutProtocol.handingOutSignatureDate.formatted( .dateTime.day().month().year()))
+                        .dateTextView()
+                        .overlay(
+                            DatePicker(selection: $handingOutVM.handingOutProtocol.handingOutSignatureDate, displayedComponents: .date) {}
+                                .padding(8)
+                                .foregroundStyle(.gray)
+                                .opacity(0.1)
+                        )
+                }
 
                 // MARK: - Handing out customer’s name
-                TextField("Shop representative’s name", text: $handingOutVM.handingOutProtocol.handingOutCustomerName)
+                TextField("Customer’s name", text: $handingOutVM.handingOutProtocol.handingOutCustomerName)
                     .newProtocolTextInput()
+                    .focused($inputFocused, equals: .customerName)
+                    .submitLabel(.next)
+                    .onSubmit {
+                        inputFocused = Optional.none
+                    }
                 
                 // MARK: - Handing out customer’s signature
                 ZStack {
@@ -141,6 +185,11 @@ struct HandOutProtocolScreen: View {
                 // MARK: - Handing out company representative’s name
                 TextField("Shop representative’s name", text: $handingOutVM.handingOutProtocol.handingOutCompanyRepresentativeName)
                     .newProtocolTextInput()
+                    .focused($inputFocused, equals: .shopRepresentativeName)
+                    .submitLabel(.next)
+                    .onSubmit {
+                        inputFocused = Optional.none
+                    }
                 
                 // MARK: - Handing out company representative’s signature
                 ZStack {
@@ -197,8 +246,6 @@ struct HandOutProtocolScreen: View {
             }
         }
     }
-    
-    
 }
 
 #Preview {
