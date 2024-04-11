@@ -21,27 +21,32 @@ struct AllProtocolsView: View {
     var body: some View {
         ScrollView (showsIndicators: false) {
             VStack {
-                ForEach(protocols, id: \.id) { transferProtocol in
-                    Button {
-                        mainVM.selectedProtocol = transferProtocol
-                        mainVM.shopScreensPage = .protocolDetails
-                    } label: {
-                        HStack {
-                            Text(transferProtocol.customerFullName ?? "")
-                                .font(.custom(FontsManager.Quicksand.bold, size: 16))
-                            
-                            Spacer()
-                            
-                            Image(systemName: "chevron.right")
+                if protocols.count > 0 {
+                    ForEach(protocols, id: \.id) { transferProtocol in
+                        Button {
+                            mainVM.selectedProtocol = transferProtocol
+                            mainVM.shopScreensPage = .protocolDetails
+                        } label: {
+                            HStack {
+                                Text(transferProtocol.customerFullName ?? "")
+                                    .font(.custom(FontsManager.Quicksand.bold, size: 16))
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.right")
+                            }
+                            .foregroundStyle(.black)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(.ultraThinMaterial)
+                            )
                         }
-                        .foregroundStyle(.black)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(.ultraThinMaterial)
-                        )
                     }
+                } else {
+                    Text("No protocols.")
+                        .font(.custom(FontsManager.Quicksand.semiBold, size: 20))
                 }
             }
             .padding(.horizontal, 32)

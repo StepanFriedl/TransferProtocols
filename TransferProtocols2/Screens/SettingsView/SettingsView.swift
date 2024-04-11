@@ -8,18 +8,36 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @ObservedObject private var mainVM = MainViewModel.shared
+
     var body: some View {
         ScrollView (showsIndicators: false) {
             VStack (spacing: 8) {
-                ForEach(1...100, id: \.self) { number in
-                    Text("Here will be some settings")
-                        .font(.custom(FontsManager.Quicksand.regular, size: 14))
+                Button {
+                    mainVM.selectedShop = nil
+                    mainVM.mainViewScreen = .shops
+                    mainVM.shopScreensPage = .addNewProtocol
+                } label: {
+                    Text("Change shop")
+                        .font(.custom(FontsManager.Quicksand.bold, size: 25))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
+                        .foregroundStyle(.red)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(.ultraThinMaterial)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .strokeBorder(.gray)
+                        )
+                        .padding(.horizontal, 64)
                 }
             }
             .padding(.bottom, 70)
+            .padding(.top, 40)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(red: 227/255, green: 109/255, blue: 109/255))
     }
 }
 
