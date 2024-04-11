@@ -7,7 +7,23 @@
 
 import SwiftUI
 
+enum AddNewShowInputs {
+    case shopName
+    case shopRegistrationNumber
+    case shopPhoneNumber
+    case shopEmail
+    case protocolTitle
+    case protocolDescription
+    case itemSpecOneTitle
+    case itemSpecTwoTitle
+    case handingInSpecOneTitle
+    case handingInSpecTwoTitle
+    case handingOutSpecOneTitle
+    case handingOutSpecTwoTitle
+}
+
 struct AddNewShopScreen: View {
+    @FocusState private var inputFocused: AddNewShowInputs?
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var shops: FetchedResults<Shop>
     
@@ -35,14 +51,25 @@ struct AddNewShopScreen: View {
                     // MARK: - Shop / Company name
                     TextField("Company name", text: $companyName)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .shopName)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .shopRegistrationNumber
+                        }
                     
                     // MARK: - Registration number / date of birth / birth number
                     TextField("Registration number", text: $registrationNumber)
                         .newProtocolTextInput()
+                        .keyboardType(.numberPad)
+                        .focused($inputFocused, equals: .shopRegistrationNumber)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            showImagePicker = true
+                        }
                     
                     // MARK: - Shop’s logo
                     Button {
-                        showImagePicker.toggle()
+                        showImagePicker = true
                     } label: {
                         if let shopsLogo = shopsLogo {
                             Image(uiImage: shopsLogo)
@@ -57,44 +84,92 @@ struct AddNewShopScreen: View {
                     // MARK: - Phone number
                     TextField("Phone number", text: $phoneNumber)
                         .newProtocolTextInput()
+                        .keyboardType(.phonePad)
+                        .focused($inputFocused, equals: .shopPhoneNumber)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .shopEmail
+                        }
                     
                     // MARK: - Email
                     TextField("Email", text: $email)
                         .newProtocolTextInput()
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .keyboardType(.emailAddress)
+                        .focused($inputFocused, equals: .shopEmail)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .protocolTitle
+                        }
                     
                     // MARK: - Protocol title
                     TextField("Protocol’s title", text: $protocolsTitle)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .protocolTitle)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .protocolDescription
+                        }
                     
                     // MARK: - Protocol description
                     TextField("Protocol’s description", text: $protocolDescription, axis: .vertical)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .protocolDescription)
                     
                     // MARK: - Item specification row 1's title
                     TextField("Item specification 1’s title", text: $itemSpecificationTitle1)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .itemSpecOneTitle)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .itemSpecTwoTitle
+                        }
                     
                     // MARK: - Item specification row 2's title
                     TextField("Item specification 2’s title", text: $itemSpecificationTitle2)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .itemSpecTwoTitle)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .handingInSpecOneTitle
+                        }
                     
                     // MARK: - Handing in specification row 1's title
                     TextField("Handing in specification 1’s title", text: $handingInTitle1)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .handingInSpecOneTitle)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .handingInSpecTwoTitle
+                        }
                     
                     // MARK: - Handing in specification row 2's title
                     TextField("Handing in specification 2’s title", text: $handingInTitle2)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .handingInSpecTwoTitle)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .handingOutSpecOneTitle
+                        }
                     
                     // MARK: - Handing out specification row 1's title
                     TextField("Handing out specification 1’s title", text: $handingOutTitle1)
                         .newProtocolTextInput()
+                        .focused($inputFocused, equals: .handingOutSpecOneTitle)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            inputFocused = .handingOutSpecTwoTitle
+                        }
                     
                     // MARK: - Handing out specification row 2's title
                     TextField("Handing out specification 2’s title", text: $handingOutTitle2)
                         .newProtocolTextInput()
-                    
-                    // TODO: - Add protocols preview
+                        .focused($inputFocused, equals: .handingOutSpecTwoTitle)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            self.saveShop()
+                        }
                     
                     
                     // MARK: - Save button
@@ -105,7 +180,6 @@ struct AddNewShopScreen: View {
                             .saveButton()
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
-                    
                 }
                 .padding(.horizontal)
                 .padding(.top, 100)
@@ -160,6 +234,11 @@ struct AddNewShopScreen: View {
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(selectedImage: $shopsLogo)
+        }
+        .onChange(of: showImagePicker) { value in
+            if value {
+                inputFocused = Optional.none
+            }
         }
     }
     
