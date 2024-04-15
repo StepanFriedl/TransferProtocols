@@ -19,41 +19,54 @@ struct AllProtocolsView: View {
     ) var protocols: FetchedResults<TransferProtocol>
     
     var body: some View {
-        ScrollView (showsIndicators: false) {
-            VStack {
-                if protocols.count > 0 {
-                    ForEach(protocols, id: \.id) { transferProtocol in
-                        Button {
-                            mainVM.selectedProtocol = transferProtocol
-                            mainVM.shopScreensPage = .protocolDetails
-                        } label: {
-                            HStack {
-                                Text(transferProtocol.customerFullName ?? "")
-                                    .font(.custom(FontsManager.Quicksand.bold, size: 16))
-                                
-                                Spacer()
-                                
-                                Image(systemName: "chevron.right")
-                            }
-                            .foregroundStyle(.black)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 16)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(.ultraThinMaterial)
-                            )
-                        }
+        List {
+            if protocols.count > 0 {
+                ForEach(protocols, id: \.id) { transferProtocol in
+                    HStack {
+                        Text(transferProtocol.customerFullName ?? "")
+                            .font(.custom(FontsManager.Quicksand.bold, size: 16))
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                        
                     }
-                } else {
-                    Text("No protocols.")
-                        .font(.custom(FontsManager.Quicksand.semiBold, size: 20))
+                    .foregroundStyle(.black)
+                    .onTapGesture {
+                        mainVM.selectedProtocol = transferProtocol
+                        mainVM.shopScreensPage = .protocolDetails
+                    }
                 }
+                .onDelete(perform: delete)
+                .listRowBackground(
+                    Rectangle()
+                        .fill(.ultraThinMaterial)
+                )
+                
+            } else {
+                Text("No protocols.")
+                    .font(.custom(FontsManager.Quicksand.semiBold, size: 20))
             }
-            .padding(.horizontal, 32)
-            .padding(.top, 32)
-            .padding(.bottom, 70)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollContentBackground(.hidden)
+        .listStyle(.automatic)
+        .listRowSpacing(8)
+        .listRowSeparator(.hidden)
+    }
+    
+    func delete(at offsets: IndexSet) {
+        // TODO: - Add the delete logic
+        for index in offsets {
+            let shop = protocols[index]
+            moc.delete(shop)
+        }
+        do {
+            try moc.save()
+        } catch {
+            print("Error deleting the protocol: \(error.localizedDescription)")
+            // TODO: - Add an error handling
+        }
     }
 }
 
